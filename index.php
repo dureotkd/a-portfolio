@@ -51,7 +51,7 @@ $now_date = date('l d F H:i');
                         <?
                         for ($i = 0; $i <= 10; $i++) {
                         ?>
-                            <li class="flex flex-col items-center justify-center cursor-pointer mr-14">
+                            <li class="flex flex-col items-center justify-center cursor-pointer mr-14" onclick="show_file(event);">
                                 <img src="./images/folder.png" style="width: 85px;" alt="" rel="preconnect">
                                 <h5>
                                     Read Me
@@ -78,9 +78,26 @@ $now_date = date('l d F H:i');
                     </div>
                 </footer>
 
+                <div class="floating-window hidden">
+                    <div class="window-header">
+                        <div class="window-title">Read Me</div>
+                        <div class="window-controls">
+                            <div class="window-minimize"></div>
+                            <div class="window-maximize"></div>
+                            <div class="window-close"></div>
+                        </div>
+                        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js' integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==' crossorigin='anonymous'></script>
+                    </div>
+                    <div class="window-content">
+                        <p>맥 스타일의 창을 만들어주는 CSS.<br>공지사항을 입력하거나 안내하는 역할을 할 수 있습니다.<br>사용 방법은 무궁무진하죠!~</p>
+                    </div>
+                </div>
             </main>
 
+
         </div>
+
+
 
     </div>
 
@@ -89,4 +106,5 @@ $now_date = date('l d F H:i');
 </html>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js' integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==' crossorigin='anonymous'></script>
 <script src="./index.js"></script>

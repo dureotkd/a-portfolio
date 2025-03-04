@@ -22,3 +22,11 @@ window.onload = function () {
   //     }, 100);
   //   };
 };
+
+function show_file(event) {
+  if ($(".floating-window").hasClass("hidden")) {
+    $(".floating-window").removeClass("hidden");
+  } else {
+    $(".floating-window").addClass("hidden");
+  }
+}
