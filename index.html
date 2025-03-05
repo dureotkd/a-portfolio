@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>컴퓨터 부팅 애니메이션</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #111;
+        overflow: hidden;
+        margin: 0;
+      }
+
+      .computer {
+        position: relative;
+        width: 250px;
+        height: 180px;
+        background: #222;
+        border-radius: 10px;
+        border: 5px solid #444;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 10px 30px rgba(0, 255, 0, 0.3);
+      }
+
+      /* 🔹 위쪽에 줄 추가 (모니터 베젤 or 연결선) */
+      .computer::before {
+        content: "";
+        position: absolute;
+        top: -15px; /* 줄의 위치 */
+        left: 50%;
+        width: 120px;
+        height: 8px;
+        background: linear-gradient(
+          to bottom,
+          #444,
+          #222
+        ); /* 약간 입체적인 효과 */
+        border-radius: 4px;
+        transform: translateX(-50%);
+      }
+
+      .screen {
+        position: absolute;
+        width: 90%;
+        height: 80%;
+        background: #000;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: lime;
+        font-family: monospace;
+        font-size: 14px;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+      }
+
+      .power-button {
+        position: absolute;
+        bottom: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40px;
+        height: 40px;
+        background: radial-gradient(circle, #666, #222);
+        border-radius: 50%;
+        box-shadow: inset 0 2px 5px rgba(255, 255, 255, 0.2);
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .power-button::before {
+        content: "";
+        width: 15px;
+        height: 15px;
+        background: red;
+        border-radius: 50%;
+        box-shadow: 0 0 8px red;
+        transition: background 0.3s, box-shadow 0.3s;
+      }
+
+      .power-button.on::before {
+        background: lime;
+        box-shadow: 0 0 10px lime;
+      }
+
+      .booting {
+        opacity: 1 !important;
+      }
+
+      .loading-text {
+        opacity: 0;
+        animation: fadeIn 3s ease-in-out infinite;
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="computer">
+      <div class="screen">
+        <span class="loading-text">Booting...</span>
+      </div>
+      <div class="power-button"></div>
+    </div>
+
+    <script>
+      const powerButton = document.querySelector(".power-button");
+      const screen = document.querySelector(".screen");
+      const loadingText = document.querySelector(".loading-text");
+
+      powerButton.addEventListener("click", () => {
+        powerButton.classList.add("on");
+        screen.classList.add("booting");
+        loadingText.innerHTML = "Booting...";
+
+        setTimeout(() => {
+          loadingText.innerHTML = "Loading OS...";
+        }, 2000);
+
+        setTimeout(() => {
+          loadingText.innerHTML = "Welcome!";
+        }, 4000);
+      });
+    </script>
+  </body>
+</html>
