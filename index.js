@@ -24,19 +24,33 @@ window.onload = function () {
 };
 
 const $modal = $(".floating-window");
+const $contract_modal = $(".floating-contract-window");
 
 function show_file(event) {
   $modal.show();
+  $modal.addClass("w-full h-full");
   setTimeout(() => {
     $modal.addClass("show");
   }, 10);
 }
 
-function close_file() {
+function show_contract() {
+  $contract_modal.show();
+  $contract_modal.addClass("w-2/5 min-h-2/5 h-auto");
+  setTimeout(() => {
+    $contract_modal.addClass("center");
+  }, 10);
+}
+
+function close_file(class_name) {
   $modal.removeClass("show");
   setTimeout(() => {
     $modal.hide(); // 애니메이션 후 숨김 처리
-  }, 300);
+  }, 500);
+}
+
+function close_file2() {
+  $contract_modal.hide(); // 애니메이션 후 숨김 처리
 }
 
 function show_lion() {

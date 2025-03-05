@@ -70,7 +70,7 @@ $now_date = date('l d F H:i');
                     <div class="p-1 bg-white rounded-2xl">
                         <img src="./images/notion.png" alt="notion" style="width:59px;">
                     </div>
-                    <div class="ml-3">
+                    <div class="ml-3" onclick="show_contract();">
                         <img class="rounded-2xl" src="./images/message.png" alt="message" style="width:67px;">
                     </div>
                     <div class="ml-3">
@@ -84,18 +84,45 @@ $now_date = date('l d F H:i');
                     </div>
                 </footer>
 
-                <div class="floating-window hidden w-full h-full">
+                <div class="floating-window">
                     <div class="window-header">
-                        <div class="window-title">Read Me</div>
+                        <div class="window-title">CONTRACT US</div>
                         <div class="window-controls">
                             <div class="window-minimize"></div>
                             <div class="window-maximize"></div>
-                            <div class="window-close" onclick="close_file(event);"></div>
+                            <div class="window-close" onclick="close_file();"></div>
                         </div>
-                        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js' integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==' crossorigin='anonymous'></script>
                     </div>
                     <div class="window-content">
                         <p>맥 스타일의 창을 만들어주는 CSS.<br>공지사항을 입력하거나 안내하는 역할을 할 수 있습니다.<br>사용 방법은 무궁무진하죠!~</p>
+                    </div>
+                </div>
+
+                <div class="floating-contract-window">
+                    <div class="window-header">
+                        <div class="window-title">CONTRACT US</div>
+                        <div class="window-controls">
+                            <div class="window-minimize"></div>
+                            <div class="window-maximize"></div>
+                            <div class="window-close" onclick="close_file2();"></div>
+                        </div>
+                    </div>
+                    <div class="window-content">
+                        <div class="flex items-center">
+                            <img src="./images/email.png" style="width: 50px;" alt="email">
+                            <h2 class="text-2xl font-semibold mt-2 ml-2" style="color:#100f0f;">
+                                hello@google.com
+                            </h2>
+                        </div>
+
+                        <form method="post" class="">
+                            <div class="flex flex-col w-full mt-4">
+                                <input class="p-2" maxlength="256" name="email" data-name="email" placeholder="your@email.com" type="email" id="email" required="">
+                                <textarea class="mt-1 p-2" rows="20" name="message" maxlength="5000" data-name="message" placeholder="Your message" required=""></textarea>
+                                <input type="submit" class="mt-1 pt-2 pb-2 cursor-pointer" data-wait="Please wait..." value="Submit">
+                            </div>
+                        </form>
+
                     </div>
                 </div>
             </main>
