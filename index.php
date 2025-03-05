@@ -17,6 +17,7 @@
     <div class="power-switch" onclick="handle_power();" style="position: relative;">
         <img id="bouncingImage" src="https://cdn.prod.website-files.com/61ba0d8d68d959d09b491aa4/632b06c3bd4efc2f7eb43d92_click-bubble-ai-01.svg" alt="">
         <input type="checkbox" />
+
         <div class="button">
             <svg class="power-off">
                 <use xlink:href="#line" class="line" />
@@ -38,6 +39,7 @@
             <circle cx="75" cy="80" r="35" />
         </symbol>
     </svg>
+
 
 
     <script src="./index.js"></script>
