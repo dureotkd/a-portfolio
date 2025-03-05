@@ -46,6 +46,9 @@ $now_date = date('l d F H:i');
                     <p><?= $now_date ?></p>
                 </header>
 
+                <div id="icon-wrap" class="w-3/4 h-3/4">
+                </div>
+
                 <section class="mt-12 float-right h-full">
                     <ul class="flex flex-col flex-wrap-reverse w-full h-4/5">
                         <?
@@ -71,20 +74,23 @@ $now_date = date('l d F H:i');
                         <img class="rounded-2xl" src="./images/message.png" alt="message" style="width:67px;">
                     </div>
                     <div class="ml-3">
-                        <img class="rounded-2xl" src="./images/note.png" alt="message" style="width:67px;">
+                        <img class="rounded-2xl" src="./images/note.png" alt="note" style="width:67px;">
+                    </div>
+                    <div class="ml-3 p-1 rounded-2xl"" style=" background-color: #e4ba89;" onclick="show_lion();">
+                        <img src=" ./images/lion.png" alt="lion" style="width:59px;">
                     </div>
                     <div>
                         <img src="./images/instagram.png" alt="instagram" style="width:90px;">
                     </div>
                 </footer>
 
-                <div class="floating-window hidden">
+                <div class="floating-window hidden w-full h-full">
                     <div class="window-header">
                         <div class="window-title">Read Me</div>
                         <div class="window-controls">
                             <div class="window-minimize"></div>
                             <div class="window-maximize"></div>
-                            <div class="window-close"></div>
+                            <div class="window-close" onclick="close_file(event);"></div>
                         </div>
                         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js' integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==' crossorigin='anonymous'></script>
                     </div>

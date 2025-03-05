@@ -23,10 +23,28 @@ window.onload = function () {
   //   };
 };
 
+const $modal = $(".floating-window");
+
 function show_file(event) {
-  if ($(".floating-window").hasClass("hidden")) {
-    $(".floating-window").removeClass("hidden");
+  $modal.show();
+  setTimeout(() => {
+    $modal.addClass("show");
+  }, 10);
+}
+
+function close_file() {
+  $modal.removeClass("show");
+  setTimeout(() => {
+    $modal.hide(); // 애니메이션 후 숨김 처리
+  }, 300);
+}
+
+function show_lion() {
+  if ($("#icon-wrap > iframe").length === 0) {
+    $("#icon-wrap").append(
+      `<iframe id="contentFrame" src="./lion/index.php" width="100%" height="100%" frameborder="0"></iframe>`
+    );
   } else {
-    $(".floating-window").addClass("hidden");
+    $("#icon-wrap").empty();
   }
 }

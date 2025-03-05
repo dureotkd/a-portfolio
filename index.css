@@ -51,8 +51,7 @@ h1::after {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: url(http://media.idownloadblog.com/wp-content/uploads/2016/06/macOS-Sierra-Wallpaper-Macbook-Wallpaper.jpg)
-    center center no-repeat;
+  background: url(./images/bg-01.webp) center center no-repeat;
   background-size: cover;
   font-size: 13px;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
@@ -73,8 +72,7 @@ main {
   z-index: 1;
   /* body의 배경과 동일하게 설정하여 내부만 선명하게 유지 */
   background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-    url("https://media.idownloadblog.com/wp-content/uploads/2016/06/macOS-Sierra-Wallpaper-Macbook-Wallpaper.jpg")
-      no-repeat center center/cover;
+    url(./images/bg-01.webp) no-repeat center center/cover;
   background-position: center;
 }
 
@@ -144,16 +142,21 @@ footer {
 
 .floating-window {
   position: absolute;
-  top: 50%;
-  left: 50%;
   transform: translate(-50%, -50%);
-  width: 500px;
   background-color: #f6f6f6;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   overflow: hidden;
   z-index: 9999;
   font-family: "NanumSquareNeo-Variable";
+}
+
+#icon-wrap {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  z-index: -1;
 }
 
 .window-header {
@@ -184,6 +187,12 @@ footer {
   background-color: #ee5f5b;
 }
 
+.window-minimize:hover,
+.window-maximize:hover,
+.window-close:hover {
+  transform: scale(1.5);
+}
+
 .window-minimize,
 .window-maximize,
 .window-close {
@@ -191,6 +200,7 @@ footer {
   height: 12px;
   margin-left: 8px;
   border-radius: 50%;
+  transition: all.3s;
 }
 
 .hidden {
@@ -202,4 +212,13 @@ footer {
 .floating-window {
   visibility: visible;
   opacity: 1;
+  transform: scale(0.8);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.floating-window.show {
+  transform: scale(1);
+  opacity: 1;
+  display: block;
 }
