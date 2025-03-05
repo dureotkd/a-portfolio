@@ -334,7 +334,7 @@ Lion = function () {
 
   for (var j = 0; j < 4; j++) {
     for (var k = 0; k < 4; k++) {
-      var manePart = new THREE.Mesh(maneGeom, this.redMat);
+      var manePart = new THREE.Mesh(maneGeom, this.whiteMat);
       manePart.position.x = j * 40 - 60;
       manePart.position.y = k * 40 - 60;
 
@@ -506,9 +506,11 @@ Lion = function () {
   this.head.add(this.rightEye);
   this.head.add(this.leftIris);
   this.head.add(this.rightIris);
+
   this.head.add(this.mouth);
   this.head.add(this.smile);
   this.head.add(this.lips);
+
   this.head.add(this.spot1);
   this.head.add(this.spot2);
   this.head.add(this.spot3);
@@ -517,6 +519,8 @@ Lion = function () {
   this.head.add(this.spot6);
   this.head.add(this.spot7);
   this.head.add(this.spot8);
+
+  // 털
   this.head.add(this.mustache1);
   this.head.add(this.mustache2);
   this.head.add(this.mustache3);
@@ -526,6 +530,38 @@ Lion = function () {
 
   this.head.position.y = 60;
 
+  // 🕶️ 선글라스 재질 (검은색 렌즈 + 프레임)
+  this.glassMat = new THREE.MeshLambertMaterial({
+    color: 0x111111,
+    shading: THREE.FlatShading,
+  });
+  this.frameMat = new THREE.MeshLambertMaterial({
+    color: 0x333333,
+    shading: THREE.FlatShading,
+  });
+
+  // 🕶️ 렌즈 (두 개)
+  var lensGeom = new THREE.BoxGeometry(25, 15, 3);
+  this.leftLens = new THREE.Mesh(lensGeom, this.glassMat);
+  this.rightLens = new THREE.Mesh(lensGeom, this.glassMat);
+
+  // 🕶️ 프레임 바 (렌즈 연결)
+  var frameGeom = new THREE.BoxGeometry(60, 5, 2);
+  this.frameBar = new THREE.Mesh(frameGeom, this.frameMat);
+
+  // 🕶️ 위치 설정
+  this.leftLens.position.set(20, 40, 125);
+  this.rightLens.position.set(-20, 40, 125);
+  this.frameBar.position.set(0, 40, 125);
+
+  // 🕶️ 선글라스 그룹 생성
+  this.glasses = new THREE.Group();
+  this.glasses.add(this.leftLens);
+  this.glasses.add(this.rightLens);
+  this.glasses.add(this.frameBar);
+
+  // 👓 선글라스를 사자의 머리에 추가
+  this.head.add(this.glasses);
   this.threegroup.add(this.body);
   this.threegroup.add(this.head);
   this.threegroup.add(this.leftKnee);
