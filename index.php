@@ -22,14 +22,14 @@ $now_date = date('l d F H:i');
 
 <body>
     <!-- 로딩 화면 -->
-    <!-- <div id="loading-screen">
+    <div id="loading-screen">
         <h1>Hello.</h1>
         <div class="progress-container">
             <div id="progress-bar"></div>
         </div>
-    </div> -->
+    </div>
 
-    <div id="body" style="display: block;">
+    <div id="body" style="display: none;">
 
         <div class="w-full h-full flex justify-center items-center min-h-screen content-wrap" data-aos="zoom-in" data-aos-duration="800">
 
