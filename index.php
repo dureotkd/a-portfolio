@@ -1,10 +1,3 @@
-<?
-date_default_timezone_set('Asia/Seoul');
-$now_date = date('l d F H:i');
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,131 +6,51 @@ $now_date = date('l d F H:i');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="./index.css" rel="stylesheet">
+    <link rel="stylesheet" href="./index.css">
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/tippy.js@6/animations/scale.css" />
 </head>
 
-
 <body>
-    <!-- 로딩 화면 -->
-    <div id="loading-screen">
-        <h1>Hello.</h1>
-        <div class="progress-container">
-            <div id="progress-bar"></div>
+
+    <div class="power-switch" onclick="handle_power();" style="position: relative;">
+        <img src="https://cdn.prod.website-files.com/61ba0d8d68d959d09b491aa4/632b06c3bd4efc2f7eb43d92_click-bubble-ai-01.svg" style="position: absolute;width: 250px;top:22xp;top: -70px;right: -70px;" alt="">
+        <input type="checkbox" />
+        <div class="button">
+            <svg class="power-off">
+                <use xlink:href="#line" class="line" />
+                <use xlink:href="#circle" class="circle" />
+            </svg>
+            <svg class="power-on">
+                <use xlink:href="#line" class="line" />
+                <use xlink:href="#circle" class="circle" />
+            </svg>
         </div>
     </div>
 
-    <div id="body" style="display: none;">
+    <!-- SVG -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" id="line">
+            <line x1="75" y1="34" x2="75" y2="58" />
+        </symbol>
+        <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" id="circle">
+            <circle cx="75" cy="80" r="35" />
+        </symbol>
+    </svg>
 
-        <div class="w-full h-full flex justify-center items-center min-h-screen content-wrap" data-aos="zoom-in" data-aos-duration="800">
-
-            <!-- 흐림 효과를 위한 컨테이너 -->
-            <div class="blur-wrapper">
-                <div class="blur-overlay"></div>
-            </div>
-
-            <main class="relative w-9/12 h-5/6">
-                <header>
-                    <div>
-                        <i class="fa-brands fa-apple text-xl"></i>
-                    </div>
-                    <p><?= $now_date ?></p>
-                </header>
-
-                <div id="icon-wrap" class="w-3/4 h-3/4">
-                </div>
-
-                <section class="mt-12 float-right h-full">
-                    <ul class="flex flex-col flex-wrap-reverse w-full h-4/5">
-                        <?
-                        for ($i = 0; $i <= 10; $i++) {
-                        ?>
-                            <li class="flex flex-col items-center justify-center cursor-pointer mr-14" onclick="show_file(event);">
-                                <img src="./images/folder.png" style="width: 85px;" alt="" rel="preconnect">
-                                <h5>
-                                    Read Me
-                                </h5>
-                            </li>
-                        <?
-                        }
-                        ?>
-                    </ul>
-                </section>
-
-                <footer class="flex flex-row absolute items-center" style="left:50%; bottom:40px">
-                    <div class="p-1 bg-white rounded-2xl">
-                        <img src="./images/notion.png" alt="notion" style="width:59px;">
-                    </div>
-                    <div class="ml-3" onclick="show_contract();">
-                        <img class="rounded-2xl" src="./images/message.png" alt="message" style="width:67px;">
-                    </div>
-                    <div class="ml-3">
-                        <img class="rounded-2xl" src="./images/note.png" alt="note" style="width:67px;">
-                    </div>
-                    <div class="ml-3 p-1 rounded-2xl"" style=" background-color: #e4ba89;" onclick="show_lion();">
-                        <img src=" ./images/lion.png" alt="lion" style="width:59px;">
-                    </div>
-                    <div>
-                        <img src="./images/instagram.png" alt="instagram" style="width:90px;">
-                    </div>
-                </footer>
-
-                <div class="floating-window">
-                    <div class="window-header">
-                        <div class="window-title">CONTRACT US</div>
-                        <div class="window-controls">
-                            <div class="window-minimize"></div>
-                            <div class="window-maximize"></div>
-                            <div class="window-close" onclick="close_file();"></div>
-                        </div>
-                    </div>
-                    <div class="window-content">
-                        <p>맥 스타일의 창을 만들어주는 CSS.<br>공지사항을 입력하거나 안내하는 역할을 할 수 있습니다.<br>사용 방법은 무궁무진하죠!~</p>
-                    </div>
-                </div>
-
-                <div class="floating-contract-window">
-                    <div class="window-header">
-                        <div class="window-title">CONTRACT US</div>
-                        <div class="window-controls">
-                            <div class="window-minimize"></div>
-                            <div class="window-maximize"></div>
-                            <div class="window-close" onclick="close_file2();"></div>
-                        </div>
-                    </div>
-                    <div class="window-content">
-                        <div class="flex items-center">
-                            <img src="./images/email.png" style="width: 50px;" alt="email">
-                            <h2 class="text-2xl font-semibold mt-2 ml-2" style="color:#100f0f;">
-                                hello@google.com
-                            </h2>
-                        </div>
-
-                        <form method="post" class="">
-                            <div class="flex flex-col w-full mt-4">
-                                <input class="p-2" maxlength="256" name="email" data-name="email" placeholder="your@email.com" type="email" id="email" required="">
-                                <textarea class="mt-1 p-2" rows="20" name="message" maxlength="5000" data-name="message" placeholder="Your message" required=""></textarea>
-                                <input type="submit" class="mt-1 pt-2 pb-2 cursor-pointer" data-wait="Please wait..." value="Submit">
-                            </div>
-                        </form>
-
-                    </div>
-                </div>
-            </main>
-
-
-        </div>
-
-
-
+    <!--- ## DRIBBBLE + TWITTER ############# -->
+    <div class="socials">
+        <a class="dribbble" href="https://dribbble.com/shots/9532615-Power-switch-animation-CodePen" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 32 32">
+                <path fill-rule="evenodd" clip-rule="evenodd" fill="white" d="M16 0C7.16703 0 0 7.16703 0 16C0 24.833 7.16703 32 16 32C24.8156 32 32 24.833 32 16C32 7.16703 24.8156 0 16 0ZM26.5683 7.37527C28.4772 9.70065 29.6226 12.6681 29.6573 15.8785C29.2061 15.7918 24.6941 14.872 20.1475 15.4447C20.0434 15.2191 19.9566 14.9761 19.8525 14.7332C19.5748 14.0738 19.2625 13.397 18.9501 12.7549C23.9826 10.7072 26.2733 7.75705 26.5683 7.37527ZM16 2.36009C19.4707 2.36009 22.6464 3.66161 25.0586 5.7961C24.8156 6.14317 22.7505 8.90239 17.8915 10.7245C15.6529 6.61171 13.1714 3.24512 12.7896 2.72451C13.8134 2.48156 14.8894 2.36009 16 2.36009ZM10.1866 3.64425C10.551 4.13015 12.9805 7.5141 15.2538 11.5401C8.86768 13.2408 3.22777 13.2061 2.62039 13.2061C3.50542 8.9718 6.36876 5.44902 10.1866 3.64425ZM2.32538 16.0174C2.32538 15.8785 2.32538 15.7397 2.32538 15.6009C2.9154 15.6182 9.54447 15.705 16.3644 13.6573C16.7636 14.4208 17.128 15.2017 17.4751 15.9826C17.3015 16.0347 17.1106 16.0868 16.9371 16.1388C9.89154 18.4121 6.14317 24.6247 5.8308 25.1453C3.6616 22.7332 2.32538 19.5228 2.32538 16.0174ZM16 29.6746C12.8416 29.6746 9.92625 28.5987 7.61822 26.7939C7.86117 26.2907 10.6377 20.9458 18.3427 18.256C18.3774 18.2386 18.3948 18.2386 18.4295 18.2213C20.3557 23.2017 21.1367 27.3839 21.3449 28.5813C19.6963 29.2928 17.8915 29.6746 16 29.6746ZM23.6182 27.3319C23.4794 26.4989 22.7505 22.5076 20.9631 17.5965C25.2495 16.9197 28.9978 18.0304 29.4664 18.1866C28.8764 21.987 26.6898 25.2668 23.6182 27.3319Z" fill="#EA4C89"></path>
+            </svg></a>
+        <a class="twitter" href="https://twitter.com/MilanRaring" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 72 72">
+                <path fill="white" d="M67.812 16.141a26.246 26.246 0 0 1-7.519 2.06 13.134 13.134 0 0 0 5.756-7.244 26.127 26.127 0 0 1-8.313 3.176A13.075 13.075 0 0 0 48.182 10c-7.229 0-13.092 5.861-13.092 13.093 0 1.026.118 2.021.338 2.981-10.885-.548-20.528-5.757-26.987-13.679a13.048 13.048 0 0 0-1.771 6.581c0 4.542 2.312 8.551 5.824 10.898a13.048 13.048 0 0 1-5.93-1.638c-.002.055-.002.11-.002.162 0 6.345 4.513 11.638 10.504 12.84a13.177 13.177 0 0 1-3.449.457c-.846 0-1.667-.078-2.465-.231 1.667 5.2 6.499 8.986 12.23 9.09a26.276 26.276 0 0 1-16.26 5.606A26.21 26.21 0 0 1 4 55.976a37.036 37.036 0 0 0 20.067 5.882c24.083 0 37.251-19.949 37.251-37.249 0-.566-.014-1.134-.039-1.694a26.597 26.597 0 0 0 6.533-6.774z"></path>
+            </svg></a>
     </div>
 
+
+    <script src="./index.js"></script>
 </body>
 
 </html>
-
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js' integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==' crossorigin='anonymous'></script>
-<script src="./index.js"></script>
