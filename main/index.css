@@ -1,3 +1,24 @@
+:root {
+  --dark-black: #1c1c25;
+  --smoke: #c4c4c4;
+  --blue: #2a4bb3;
+  --medium-black: #25252f;
+  --black: #101016;
+  --soft-black: #3b3b44;
+  --dark-blue: #213e9a;
+  --black-blue: #1f367e;
+  --dark-red: #95234c;
+  --dark-yellow: #b58622;
+  --dark-purple: #4548a9;
+  --red: #e72a6e;
+  --yellow: #ecb236;
+  --white-smoke: #f7efdd;
+  --purple: #7174db;
+  --green: #44ac9e;
+  --dark-green: #267267;
+  --light-blue: #536cbb;
+}
+
 /* 로딩 화면 스타일 */
 #loading-screen {
   position: fixed;
@@ -25,7 +46,6 @@ h1 {
 h1,
 h1::after {
   margin: 0;
-  font-size: clamp(2rem, 1rem + 3vw, 12rem);
   background: linear-gradient(90deg in lch longer hue, oklch(105% 90% 0) 0 0);
   /*   background: linear-gradient(90deg in hsl longer hue, hsl(0 100% 70%) 0 0); */
   background-size: 500% 100%;
@@ -49,6 +69,16 @@ h1::after {
   }
 }
 
+body {
+  background-color: var(--dark-black);
+  color: var(--smoke);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: Greycliffcf, sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
 #body {
   width: 100%;
   height: 100%;
@@ -56,43 +86,49 @@ h1::after {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: url(../images/bg-01.webp) center center no-repeat;
-  background-size: cover;
   font-size: 13px;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
-    "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Greycliffcf, sans-serif;
   overflow: hidden;
+  background-color: var(--dark-black);
+  color: var(--smoke);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: Greycliffcf, sans-serif;
+  font-weight: 700;
+
+  background-color: rgba(0, 0, 0, 0);
+  background-image: radial-gradient(
+      circle,
+      rgba(229, 229, 229, 0.03) 20%,
+      transparent 10%
+    ),
+    radial-gradient(circle, rgb(0 0 0 / 3%) 20%, transparent 10%);
+  background-size: 1em 1em;
+  background-position: 50% 50%;
 }
 
 main {
   border-radius: 7px;
-  border-left: 18px solid black;
+  /* border-left: 18px solid black;
   border-right: 18px solid black;
   border-top: 14px solid black;
   border-bottom: 14px solid black;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); */
   width: 100%;
   height: 100%;
   position: absolute;
   z-index: 1;
   /* body의 배경과 동일하게 설정하여 내부만 선명하게 유지 */
-  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-    url(../images/bg-01.webp) no-repeat center center/cover;
   background-position: center;
 }
 
 header {
   height: 35px;
-  background-color: #845f56;
   width: 100%;
-  position: absolute;
-  top: 0px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0px 12px;
   color: #dcd7c9;
-  backdrop-filter: none; /* 흐림 효과 없음 */
 }
 
 /* 흐림 효과를 위한 별도 컨테이너 */
@@ -120,20 +156,16 @@ h5 {
   color: #f1f1f1;
 }
 
-footer {
-  transform: translate(-50%, 0px);
-}
-
-footer > div {
+.icon-wrap > div {
   transition: all.2s;
   cursor: pointer;
 }
 
-footer > div:hover {
+.icon-wrap > div:hover {
   transform: scale(1.3);
 }
 
-footer {
+.icon-wrap {
   margin: auto auto 12px auto;
   border-radius: 24px;
   padding: 0 12px;
@@ -232,4 +264,89 @@ footer {
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.device__line {
+  background-color: var(--black-blue);
+  height: 0.14em;
+  margin-top: 1.11em;
+}
+
+.toggle-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border-radius: 0.5em;
+  padding: 0.125em;
+  background-image: linear-gradient(to bottom, #d5d5d5, #e8e8e8);
+  box-shadow: 0 1px 1px rgb(255 255 255 / 0.6);
+  /* resize for demo */
+  font-size: 1.5em;
+}
+
+.toggle-checkbox {
+  appearance: none;
+  position: absolute;
+  z-index: 1;
+  border-radius: inherit;
+  width: 100%;
+  height: 100%;
+  /* fix em sizing */
+  font: inherit;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.toggle-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  border-radius: 0.375em;
+  width: 3em;
+  height: 1.5em;
+  background-color: #e8e8e8;
+  box-shadow: inset 0 0 0.0625em 0.125em rgb(255 255 255 / 0.2),
+    inset 0 0.0625em 0.125em rgb(0 0 0 / 0.4);
+  transition: background-color 0.4s linear;
+}
+
+.toggle-checkbox:checked + .toggle-container {
+  background-color: #f3b519;
+}
+
+.toggle-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0.0625em;
+  border-radius: 0.3125em;
+  width: 1.375em;
+  height: 1.375em;
+  background-color: #e8e8e8;
+  box-shadow: inset 0 -0.0625em 0.0625em 0.125em rgb(0 0 0 / 0.1),
+    inset 0 -0.125em 0.0625em rgb(0 0 0 / 0.2),
+    inset 0 0.1875em 0.0625em rgb(255 255 255 / 0.3),
+    0 0.125em 0.125em rgb(0 0 0 / 0.5);
+  transition: left 0.4s;
+}
+
+.toggle-checkbox:checked + .toggle-container > .toggle-button {
+  left: 1.5625em;
+}
+
+.toggle-button-circles-container {
+  display: grid;
+  grid-template-columns: repeat(3, min-content);
+  gap: 0.125em;
+  position: absolute;
+  margin: 0 auto;
+}
+
+.toggle-button-circle {
+  border-radius: 50%;
+  width: 0.125em;
+  height: 0.125em;
+  background-image: radial-gradient(circle at 50% 0, #f5f5f5, #c4c4c4);
 }

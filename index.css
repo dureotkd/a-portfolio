@@ -1,8 +1,26 @@
 :root {
   --color-invert: #ffffff;
   --color-invert2: #252424;
-  --width: 150px;
-  --height: 150px;
+  --width: 70px;
+  --height: 70px;
+  --dark-black: #1c1c25;
+  --smoke: #c4c4c4;
+  --blue: #2a4bb3;
+  --medium-black: #25252f;
+  --black: #101016;
+  --soft-black: #3b3b44;
+  --dark-blue: #213e9a;
+  --black-blue: #1f367e;
+  --dark-red: #95234c;
+  --dark-yellow: #b58622;
+  --dark-purple: #4548a9;
+  --red: #e72a6e;
+  --yellow: #ecb236;
+  --white-smoke: #f7efdd;
+  --purple: #7174db;
+  --green: #44ac9e;
+  --dark-green: #267267;
+  --light-blue: #536cbb;
 }
 
 .power-switch {
@@ -86,7 +104,7 @@
 .power-switch .button .power-off .circle {
   opacity: 0.2;
   transform: rotate(-58deg);
-  transform-origin: center 80px;
+  transform-origin: center 38px;
   stroke-dasharray: 220;
   stroke-dashoffset: 40;
 }
