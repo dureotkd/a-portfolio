@@ -144,6 +144,7 @@ function createFloor() {
 
 function createLion() {
   lion = new Lion();
+  lion.threegroup.scale.set(2.0, 2.0, 2.0); // 라이언 크기 증가 (1.5배)
   scene.add(lion.threegroup);
 }
 

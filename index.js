@@ -1,7 +1,15 @@
 function handle_power() {
+  const soundAudio = new Audio(`./sounds/click1.wav`);
+
+  if (!soundAudio.paused) {
+    soundAudio.pause();
+    soundAudio.currentTime = 0; // 처음부터 다시 시작
+  }
+  soundAudio.play();
+
   setTimeout(() => {
     window.location.href = "/main";
-  }, 1000);
+  }, 1200);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
