@@ -105,14 +105,10 @@ function sound_play() {
   soundAudio.play();
 }
 
+const soundAudio = new Audio(`../sounds/toggle.wav`);
+
 function sound_play_toggle() {
-  const soundAudio = new Audio(`../sounds/toggle.wav`);
-
-  if (!soundAudio.paused) {
-    soundAudio.pause();
-    soundAudio.currentTime = 0; // 처음부터 다시 시작
-  }
-
+  soundAudio.currentTime = 0; // 처음부터 다시 재생
   soundAudio.play();
 }
 
