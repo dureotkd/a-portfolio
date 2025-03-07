@@ -131,20 +131,10 @@ function createLights() {
   scene.add(shadowLight);
 }
 
-function createFloor() {
-  floor = new THREE.Mesh(
-    new THREE.PlaneBufferGeometry(1000, 500),
-    new THREE.MeshBasicMaterial({ color: 0xebe5e7 })
-  );
-  floor.rotation.x = -Math.PI / 2;
-  floor.position.y = -100;
-  floor.receiveShadow = true;
-  scene.add(floor);
-}
-
 function createLion() {
   lion = new Lion();
-  // lion.threegroup.scale.set(2.0, 2.0, 2.0); // 라이언 크기 증가 (1.5배)
+  lion.threegroup.scale.set(0.45, 0.45, 0.45); // 라이언 크기 증가 (1.5배)
+
   scene.add(lion.threegroup);
 }
 
@@ -335,7 +325,7 @@ Lion = function () {
 
   for (var j = 0; j < 4; j++) {
     for (var k = 0; k < 4; k++) {
-      var manePart = new THREE.Mesh(maneGeom, this.whiteMat);
+      var manePart = new THREE.Mesh(maneGeom, this.redMat);
       manePart.position.x = j * 40 - 60;
       manePart.position.y = k * 40 - 60;
 
@@ -561,8 +551,42 @@ Lion = function () {
   this.glasses.add(this.rightLens);
   this.glasses.add(this.frameBar);
 
-  // 👓 선글라스를 사자의 머리에 추가
+  let bandMat = new THREE.MeshLambertMaterial({ color: 0xaaaaaa }); // 회색 헤드밴드
+  let earCupMat = new THREE.MeshLambertMaterial({ color: 0x888888 }); // 어두운 회색 이어컵
+
+  // 🎧 **헤드밴드 (심플한 곡선)* * 2*
+  let bandGeom = new THREE.TorusGeometry(45, 6, 16, 100, Math.PI);
+  this.band = new THREE.Mesh(bandGeom, bandMat);
+  this.band.position.set(0, 65, 110);
+
+  // 🎧 **이어컵 (둥글고 입체적인 모양)**
+  let earCupGeom = new THREE.SphereGeometry(15, 20, 20);
+  let earCupBaseGeom = new THREE.CylinderGeometry(15, 15, 8, 32); // 두께 추가
+
+  this.leftEarCup = new THREE.Mesh(earCupBaseGeom, earCupMat);
+  this.leftEarCap = new THREE.Mesh(earCupGeom, earCupMat);
+
+  this.rightEarCup = this.leftEarCup.clone();
+  this.rightEarCap = this.leftEarCap.clone();
+
+  // 📌 위치 조정
+  this.leftEarCup.position.set(40, 50, 110);
+  this.leftEarCap.position.set(40, 50, 117); // 둥근 부분을 앞으로 배치
+  this.rightEarCup.position.set(-40, 50, 110);
+  this.rightEarCap.position.set(-40, 50, 117);
+
+  // 🎧 **헤드셋 그룹화 후 사자의 머리에 추가**
+  this.headphones = new THREE.Group();
+  this.headphones.add(this.band);
+  this.headphones.add(this.leftEarCup);
+  this.headphones.add(this.leftEarCap);
+  this.headphones.add(this.rightEarCup);
+  this.headphones.add(this.rightEarCap);
+  this.headphones.visible = false; // 기본적으로 숨김
+
   this.head.add(this.glasses);
+  this.head.add(this.headphones);
+
   this.threegroup.add(this.body);
   this.threegroup.add(this.head);
   this.threegroup.add(this.leftKnee);
@@ -578,6 +602,13 @@ Lion = function () {
       object.receiveShadow = true;
     }
   });
+};
+
+// 🎵 버튼 클릭 시 헤드셋 보이기 / 숨기기
+Lion.prototype.toggleHeadphones = function () {
+  if (this.headphones) {
+    this.headphones.visible = !this.headphones.visible;
+  }
 };
 
 Lion.prototype.updateBody = function (speed) {
@@ -682,6 +713,88 @@ Lion.prototype.look = function (xTarget, yTarget) {
   this.body.geometry.verticesNeedUpdate = true;
 };
 
+function createLaptop() {
+  laptop = new Laptop();
+  laptop.threegroup.position.z = 350;
+
+  laptop.threegroup.scale.set(0.7, 0.7, 0.7); // 💻 크기 고정
+}
+
+Laptop = function () {
+  this.isOpen = true; // 노트북 화면이 열려있는 상태
+
+  this.baseMat = new THREE.MeshLambertMaterial({
+    color: 0xffc0cb, // 본체 연한 핑크
+    shading: THREE.FlatShading,
+  });
+
+  this.screenFrameMat = new THREE.MeshLambertMaterial({
+    color: 0xff69b4, // 화면 테두리 진한 핑크
+    shading: THREE.FlatShading,
+  });
+
+  this.screenMat = new THREE.MeshLambertMaterial({
+    color: 0x000000, // 기본 화면 (검은색)
+    shading: THREE.FlatShading,
+  });
+
+  this.keyboardMat = new THREE.MeshLambertMaterial({
+    color: 0xffd1dc, // 키보드 부분 연한 핑크
+    shading: THREE.FlatShading,
+  });
+
+  // 📌 **Base (노트북 본체)**
+  var baseGeom = new THREE.BoxGeometry(70, 5, 50);
+  this.base = new THREE.Mesh(baseGeom, this.baseMat);
+
+  // 📌 **Screen Frame (화면 프레임)**
+  var screenFrameGeom = new THREE.BoxGeometry(68, 40, 2);
+  this.screenFrame = new THREE.Mesh(screenFrameGeom, this.screenFrameMat);
+  this.screenFrame.position.y = 20;
+  this.screenFrame.position.z = -23;
+
+  // 📌 **Screen (화면)**
+  var screenGeom = new THREE.BoxGeometry(60, 30, 1);
+  this.screen = new THREE.Mesh(screenGeom, this.screenMat);
+  this.screen.position.y = 20;
+  this.screen.position.z = -24;
+
+  // 📌 **Hinge (경첩)**
+  var hingeGeom = new THREE.BoxGeometry(70, 2, 3);
+  this.hinge = new THREE.Mesh(hingeGeom, this.screenFrameMat);
+  this.hinge.position.y = 8;
+  this.hinge.position.z = -20;
+
+  // 📌 **Keyboard (키보드 영역)**
+  var keyboardGeom = new THREE.BoxGeometry(65, 1, 35);
+  this.keyboard = new THREE.Mesh(keyboardGeom, this.keyboardMat);
+  this.keyboard.position.y = 3;
+  this.keyboard.position.z = 3;
+
+  // 📌 **노트북 그룹화**
+  this.threegroup = new THREE.Group();
+  this.threegroup.add(this.base);
+  this.threegroup.add(this.screenFrame);
+  this.threegroup.add(this.keyboard);
+};
+
+// 마우스 위치에 따라 노트북이 따라가도록 설정
+Laptop.prototype.update = function (xTarget, yTarget, deltaTime) {
+  this.threegroup.lookAt(new THREE.Vector3(0, 80, 60));
+  this.tPosX = rule3(xTarget, -200, 200, -250, 250);
+  this.tPosY = rule3(yTarget, -200, 200, 250, -250);
+
+  // 📌 위치 변경을 부드럽게 적용 (급격한 변화 방지)
+  this.threegroup.position.x +=
+    (this.tPosX - this.threegroup.position.x) * deltaTime * 2.5; // 부드러운 이동
+  this.threegroup.position.y +=
+    (this.tPosY - this.threegroup.position.y) * deltaTime * 2.5;
+
+  // 💡 **화면이 마우스 방향으로 기울어지는 효과 (반응 속도 줄임)**
+  let rotationY = rule3(xTarget, -200, 200, -0.1, 0.1);
+  let rotationX = rule3(yTarget, -200, 200, -0.05, 0.05);
+};
+
 Lion.prototype.cool = function (xTarget, yTarget, deltaTime) {
   this.tHeagRotY = rule3(xTarget, -200, 200, Math.PI / 4, -Math.PI / 4);
   this.tHeadRotX = rule3(yTarget, -200, 200, Math.PI / 4, -Math.PI / 4);
@@ -757,6 +870,38 @@ Lion.prototype.cool = function (xTarget, yTarget, deltaTime) {
   this.body.geometry.verticesNeedUpdate = true;
 };
 
+Lion.prototype.addHeadphones = function () {
+  let bandMat = new THREE.MeshLambertMaterial({ color: 0x333333 }); // 헤드셋 밴드 (검은색)
+  let earCupMat = new THREE.MeshLambertMaterial({ color: 0x222222 }); // 이어컵 (어두운 회색)
+
+  // 🎧 **헤드셋 밴드 (머리 위)**
+  let bandGeom = new THREE.TorusGeometry(50, 5, 16, 100, Math.PI);
+  this.band = new THREE.Mesh(bandGeom, bandMat);
+  this.band.rotation.x = Math.PI / 2;
+  this.band.position.set(0, 80, 110); // 👈 시작 위치를 위로 올림 (내려오는 애니메이션 효과)
+
+  // 🎧 **왼쪽 이어컵**
+  let earCupGeom = new THREE.CylinderGeometry(12, 12, 6, 32);
+  this.leftEarCup = new THREE.Mesh(earCupGeom, earCupMat);
+  this.leftEarCup.rotation.x = Math.PI / 2;
+  this.leftEarCup.position.set(50, 75, 110);
+
+  // 🎧 **오른쪽 이어컵**
+  this.rightEarCup = this.leftEarCup.clone();
+  this.rightEarCup.position.x = -50;
+
+  // 🎧 **헤드셋 그룹화 후 사자의 머리에 추가**
+  this.headphones = new THREE.Group();
+  this.headphones.add(this.band);
+  this.headphones.add(this.leftEarCup);
+  this.headphones.add(this.rightEarCup);
+
+  // 🎧 **처음에는 보이지 않도록 설정**
+  this.headphones.visible = false;
+
+  this.head.add(this.headphones);
+};
+
 function loop() {
   deltaTime = clock.getDelta();
   time += deltaTime;
@@ -765,13 +910,18 @@ function loop() {
   var xTarget = mousePos.x - windowHalfX;
   var yTarget = mousePos.y - windowHalfY;
 
-  fan.isBlowing = isBlowing;
-  fan.update(xTarget, yTarget, deltaTime);
-  if (isBlowing) {
-    lion.cool(xTarget, yTarget, deltaTime);
-  } else {
-    lion.look(xTarget, yTarget);
-  }
+  // fan.isBlowing = isBlowing;
+  // fan.update(xTarget, yTarget, deltaTime);
+
+  // 노트북이 마우스 방향을 따라가도록 설정
+  lion.look(xTarget, yTarget);
+  laptop.update(xTarget, yTarget, deltaTime);
+
+  // if (isBlowing) {
+  //   lion.cool(xTarget, yTarget, deltaTime);
+  // } else {
+  // }
+
   requestAnimationFrame(loop);
 }
 
@@ -779,12 +929,6 @@ function render() {
   if (controls) controls.update();
   renderer.render(scene, camera);
 }
-
-init();
-createLights();
-createLion();
-createFan();
-loop();
 
 function clamp(v, min, max) {
   return Math.min(Math.max(v, min), max);

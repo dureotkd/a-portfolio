@@ -16,6 +16,7 @@ $now_date = date('l d F H:i');
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../lion/index.css">
     <link href="./index.css" rel="stylesheet">
 </head>
 
@@ -40,13 +41,13 @@ $now_date = date('l d F H:i');
 
             <main class="md:mb-100px relative w-full max-h-[815px] max-w-screen-xl">
                 <section class="w-full h-full flex md:flex-row flex-col mt-2">
-                    <div class="md:w-2/5 w-full md:h-auto md:min-h-0 relative" data-label="game">
+                    <div class="md:w-2/5 md:min-w-[512px] w-full md:h-auto md:min-h-0 relative" data-label="game">
 
                         <div class="w-full h-full bg-[#2a4bb3] rounded-2xl p-4 text-white shadow-lg">
 
                             <!-- Header Section -->
                             <header class="flex justify-between items-center">
-                                <span class="text-sm font-semibold">HELO 3D LION ANIMATION</span>
+                                <span class="text-sm font-semibold">HELLO 3D LION ANIMATION</span>
                                 <div class="window-controls">
                                     <div class="window-minimize"></div>
                                     <div class="window-maximize"></div>
@@ -57,9 +58,11 @@ $now_date = date('l d F H:i');
                             <div class="device__line"></div>
 
                             <!-- Profile Image Container -->
-                            <div class="h-[350px] bg-[#1E2A47] rounded-xl mt-4 flex justify-center items-center min-h-[350px] cursor-pointer" style=" background-color: #e4ba89;" onclick="show_lion(event);">
+                            <div id="world" class="h-[350px] bg-[#1E2A47] overflow-hidden rounded-xl mt-4 flex justify-center items-center min-h-[350px] cursor-pointer" style=" background-color: #e4ba89;" onclick="show_lion(event);">
                                 <div class="ml-3 p-1 rounded-2xl">
                                     <img src=" ../images/lion.png" alt="lion">
+                                    <div id="instructions">
+                                    </div>
                                 </div>
                             </div>
 
@@ -80,7 +83,7 @@ $now_date = date('l d F H:i');
                                         <label class="flex items-center bg-[#1E2A47] p-2 rounded-lg cursor-pointer hover:bg-[#243A63]">
 
                                             <div class="toggle-wrapper mr-2">
-                                                <input class="toggle-checkbox" type="checkbox" onchange="lion_exec2()">
+                                                <input class="toggle-checkbox" type="checkbox" onchange="lion_exec1(event)" disabled>
                                                 <div class="toggle-container">
                                                     <div class="toggle-button">
                                                         <div class="toggle-button-circles-container">
@@ -100,14 +103,14 @@ $now_date = date('l d F H:i');
                                                     </div>
                                                 </div>
                                             </div>
-                                            <span class="font-semibold text-sm">COMPUTER SCIENCE</span>
+                                            <span class="font-semibold text-sm">Programming & Engineering</span>
                                         </label>
 
                                         <!-- Option 3 -->
                                         <label class="flex items-center bg-[#1E2A47] p-2 rounded-lg cursor-pointer hover:bg-[#243A63]">
 
                                             <div class="toggle-wrapper mr-2">
-                                                <input class="toggle-checkbox" type="checkbox" onchange="lion_exec3()">
+                                                <input class="toggle-checkbox" type="checkbox" onchange="lion_exec2()" disabled>
                                                 <div class="toggle-container">
                                                     <div class="toggle-button">
                                                         <div class="toggle-button-circles-container">
@@ -128,14 +131,14 @@ $now_date = date('l d F H:i');
                                                 </div>
                                             </div>
 
-                                            <span class="font-semibold text-sm">PHYSICS EXPERT</span>
+                                            <span class="font-semibold text-sm">Physics Expert</span>
                                         </label>
 
                                         <!-- Option 3 -->
                                         <label class="flex items-center bg-[#1E2A47] p-2 rounded-lg cursor-pointer hover:bg-[#243A63]">
 
                                             <div class="toggle-wrapper mr-2">
-                                                <input class="toggle-checkbox" type="checkbox" onchange="lion_exec3()">
+                                                <input class="toggle-checkbox" type="checkbox" onchange="lion_exec3()" disabled>
                                                 <div class="toggle-container">
                                                     <div class="toggle-button">
                                                         <div class="toggle-button-circles-container">
@@ -156,22 +159,22 @@ $now_date = date('l d F H:i');
                                                 </div>
                                             </div>
 
-                                            <span class="font-semibold text-sm">RANDOM COLOR</span>
+                                            <span class="font-semibold text-sm">Music & Art</span>
                                         </label>
                                     </div>
                                 </div>
 
                             </div>
 
-                            <div class="flex flex-row  items-center w-full justify-center icon-wrap mt-2">
-                                <div class="p-1 bg-white rounded-2xl">
-                                    <img src="../images/notion.png" alt="notion" style="width:59px;">
+                            <div class="md:mt-3 mt-5 flex flex-row  items-center w-full justify-center icon-wrap">
+                                <div class="p-1 rounded-2xl" style="background-color: #0288d1;">
+                                    <img src="../images/linkdin.png" alt="linkdin" style="width:59px;">
+                                </div>
+                                <div class="ml-3 bg-white rounded-2xl">
+                                    <img src="../images/sc.png" alt="sc" style="width:67px;">
                                 </div>
                                 <div class="ml-3" onclick="show_contract();">
                                     <img class="rounded-2xl" src="../images/message.png" alt="message" style="width:67px;">
-                                </div>
-                                <div class="ml-3">
-                                    <img class="rounded-2xl" src="../images/note.png" alt="note" style="width:67px;">
                                 </div>
                                 <div>
                                     <img src="../images/instagram.png" alt="instagram" style="width:90px;">
@@ -242,6 +245,10 @@ $now_date = date('l d F H:i');
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js' integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==' crossorigin='anonymous'></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r70/three.min.js"></script>
+<script src="../lion/index.js"></script>
 <script src="./index.js"></script>
 
 </main>

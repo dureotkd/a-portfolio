@@ -38,18 +38,29 @@ function close_file2() {
 
 function show_lion(event) {
   const target = $(event.currentTarget);
-  target.empty();
+  $(".toggle-checkbox").prop("disabled", false);
+  target.removeAttr("onclick");
 
-  if (target.children("iframe").length === 0) {
-    target.append(
-      `<iframe id="contentFrame" src="../lion/index.php" width="100%" height="100%" frameborder="0"></iframe>`
-    );
-  } else {
-  }
+  init();
+  createLights();
+  createLion();
+  loop();
 }
 
-function lion_exec1() {
+function lion_exec1(event) {
   sound_play_toggle();
+
+  const is_chk = $(event.target).is(":checked");
+
+  createLaptop();
+
+  if (is_chk) {
+    scene.add(laptop.threegroup);
+  } else {
+    scene.remove(laptop.threegroup);
+  }
+
+  loop();
 }
 
 function lion_exec2() {
@@ -58,6 +69,8 @@ function lion_exec2() {
 
 function lion_exec3() {
   sound_play_toggle();
+
+  lion.toggleHeadphones();
 }
 
 function sound_play() {
