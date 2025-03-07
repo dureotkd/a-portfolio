@@ -110,7 +110,7 @@ $now_date = date('l d F H:i');
                                         <label class="flex items-center bg-[#1E2A47] p-2 rounded-lg cursor-pointer hover:bg-[#243A63]">
 
                                             <div class="toggle-wrapper mr-2">
-                                                <input class="toggle-checkbox" type="checkbox" onchange="lion_exec2()" disabled>
+                                                <input class="toggle-checkbox" type="checkbox" onchange="lion_exec2(event)" disabled>
                                                 <div class="toggle-container">
                                                     <div class="toggle-button">
                                                         <div class="toggle-button-circles-container">
@@ -185,51 +185,31 @@ $now_date = date('l d F H:i');
 
 
                     </div>
-                    <div class="md:w-3/5 w-full h-full bg-[#25252f] ml-2" data-label="portfolio">asds</div>
+                    <div class="md:w-3/5 w-full h-full bg-[#25252f] ml-2" data-label="portfolio">
+
+                        <swiper-container class="mySwiper rounded-2xl" pagination="true" pagination-clickable="true" direction="vertical" loop="true"
+                            speed="800"
+                            easing-function="ease-in-out"
+                            space-between="30" mousewheel="true">
+
+                            <swiper-slide>
+                                <img class="rounded-2xl" src="https://cdn.prod.website-files.com/61ba0d8d68d959d09b491aa4/63244ebd9ebeb009874184e0_big__cos.png" alt="포트폴리오 이미지">
+                            </swiper-slide>
+                            <swiper-slide>
+                                <img class="rounded-2xl" src="https://cdn.prod.website-files.com/61ba0d8d68d959d09b491aa4/6585bbe4efa424b287aeba08_big__heypongo.webp" alt="포트폴리오 이미지">
+                            </swiper-slide>
+                            <swiper-slide>
+                                <img class="rounded-2xl" src="https://cdn.prod.website-files.com/61ba0d8d68d959d09b491aa4/63247caccde6a700504c3348_big__walex.jpg" alt="포트폴리오 이미지">
+                            </swiper-slide>
+                            <swiper-slide>
+                                <img class="rounded-2xl" src="https://cdn.prod.website-files.com/61ba0d8d68d959d09b491aa4/63247cacbf2fc841c2cc45bc_big__aim.jpg" alt="포트폴리오 이미지">
+                            </swiper-slide>
+                        </swiper-container>
+
+                    </div>
                 </section>
 
 
-                <!-- <div class="floating-window">
-                    <div class="window-header">
-                        <div class="window-title">CONTRACT US</div>
-                        <div class="window-controls">
-                            <div class="window-minimize"></div>
-                            <div class="window-maximize"></div>
-                            <div class="window-close" onclick="close_file();"></div>
-                        </div>
-                    </div>
-                    <div class="window-content">
-                        <p>맥 스타일의 창을 만들어주는 CSS.<br>공지사항을 입력하거나 안내하는 역할을 할 수 있습니다.<br>사용 방법은 무궁무진하죠!~</p>
-                    </div>
-                </div>
-
-                <div class="floating-contract-window">
-                    <div class="window-header">
-                        <div class="window-title">CONTRACT US</div>
-                        <div class="window-controls">
-                            <div class="window-minimize"></div>
-                            <div class="window-maximize"></div>
-                            <div class="window-close" onclick="close_file2();"></div>
-                        </div>
-                    </div>
-                    <div class="window-content">
-                        <div class="flex items-center">
-                            <img src="../images/email.png" style="width: 50px;" alt="email">
-                            <h2 class="text-2xl font-semibold mt-2 ml-2" style="color:#100f0f;">
-                                hello@google.com
-                            </h2>
-                        </div>
-
-                        <form method="post" class="">
-                            <div class="flex flex-col w-full mt-4">
-                                <input class="p-2" maxlength="256" name="email" data-name="email" placeholder="your@email.com" type="email" id="email" required="">
-                                <textarea class="mt-1 p-2" rows="20" name="message" maxlength="5000" data-name="message" placeholder="Your message" required=""></textarea>
-                                <input type="submit" class="mt-1 pt-2 pb-2 cursor-pointer" data-wait="Please wait..." value="Submit">
-                            </div>
-                        </form>
-
-                    </div>
-                </div> -->
             </main>
 
 
@@ -243,6 +223,7 @@ $now_date = date('l d F H:i');
 
 </html>
 
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js' integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==' crossorigin='anonymous'></script>
 
@@ -265,6 +246,7 @@ $now_date = date('l d F H:i');
 </html>
 
 <script src="https://cdn.tailwindcss.com"></script>
+
 <script>
     tailwind.config = {
         theme: {

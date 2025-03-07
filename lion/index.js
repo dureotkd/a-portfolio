@@ -915,7 +915,10 @@ function loop() {
 
   // 노트북이 마우스 방향을 따라가도록 설정
   lion.look(xTarget, yTarget);
-  laptop.update(xTarget, yTarget, deltaTime);
+
+  if (laptop) {
+    laptop.update(xTarget, yTarget, deltaTime);
+  }
 
   // if (isBlowing) {
   //   lion.cool(xTarget, yTarget, deltaTime);

@@ -4,6 +4,15 @@ window.onload = function () {
     duration: 800, // 애니메이션 지속 시간 설정
     once: true, // 한 번만 실행되도록 설정
   });
+
+  const swiperEl = document.querySelector(".mySwiper").swiper;
+
+  // 마우스 휠 이벤트 감지
+  swiperEl.on("slideChange", function () {
+    console.log("🔄 Slide Changed: ", swiperEl.activeIndex);
+
+    sound_play_toggle();
+  });
 };
 
 const $modal = $(".floating-window");
@@ -44,6 +53,7 @@ function show_lion(event) {
   init();
   createLights();
   createLion();
+  createLaptop();
   loop();
 }
 
@@ -52,6 +62,9 @@ function lion_exec1(event) {
 
   const is_chk = $(event.target).is(":checked");
 
+  // 체크 여부에 따라 노트북 보이기/숨기기
+  laptop.threegroup.visible = is_chk;
+
   createLaptop();
 
   if (is_chk) {
@@ -59,17 +72,24 @@ function lion_exec1(event) {
   } else {
     scene.remove(laptop.threegroup);
   }
-
-  loop();
 }
 
-function lion_exec2() {
+function lion_exec2(event) {
   sound_play_toggle();
+
+  const world = $("#world");
+
+  const is_chk = $(event.currentTarget).is(":checked");
+
+  if (is_chk) {
+    world.addClass("dark");
+  } else {
+    world.removeClass("dark");
+  }
 }
 
 function lion_exec3() {
   sound_play_toggle();
-
   lion.toggleHeadphones();
 }
 
