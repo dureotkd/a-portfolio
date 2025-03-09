@@ -1,4 +1,5 @@
 <?
+
 require_once('../db/index.php');
 require_once('../cookie/index.php');
 

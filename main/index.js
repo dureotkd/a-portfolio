@@ -18,26 +18,41 @@ window.onload = function () {
 const $modal = $(".floating-window");
 const $contract_modal = $(".floating-contract-window");
 
-function show_file(event) {
+function show_file(id) {
   sound_play(1);
 
-  $modal.show();
+  $.ajax({
+    type: "POST",
+    url: "/_ajax/index.php",
+    async: false,
+    data: {
+      id: id,
+      mode: "article_update_view",
+    },
+    dataType: "json",
+    success: function ({ content, title }) {
+      $(".window-title").text(title);
+      $(".window-content").html(content);
 
-  if (window.innerWidth <= 768) {
-    // 현재 스크롤 위치 가져오기
-    let scrollY = document.getElementById("body").scrollTop;
+      $modal.show();
 
-    console.log(scrollY);
+      if (window.innerWidth <= 768) {
+        // 현재 스크롤 위치 가져오기
+        let scrollY = document.getElementById("body").scrollTop;
 
-    $modal.addClass(`w-full h-screen`);
-    $modal.css("top", `${scrollY}px`); // JavaScript로 top 설정
-  } else {
-    $modal.addClass("w-full h-full");
-  }
+        console.log(scrollY);
 
-  setTimeout(() => {
-    $modal.addClass("show");
-  }, 10);
+        $modal.addClass(`w-full h-screen`);
+        $modal.css("top", `${scrollY}px`); // JavaScript로 top 설정
+      } else {
+        $modal.addClass("w-full h-full");
+      }
+
+      setTimeout(() => {
+        $modal.addClass("show");
+      }, 10);
+    },
+  });
 }
 
 function show_contract() {

@@ -89,28 +89,23 @@ $article_all = select('SELECT * FROM siri.article');
                 <span style="color:red; font-size:14px;">한글명 파일 X</span>
             </h2>
 
-            <?php
-            for ($i = 0; $i < 5; $i++) {
-                $existingFile = isset($portfolio_all[$i]['image_url']) ? $portfolio_all[$i]['image_url'] : null;
-                $fileName = isset($portfolio_all[$i]['image_name']) ? $portfolio_all[$i]['image_name'] : "No file";
-                $file_id = isset($portfolio_all[$i]['id']) ? $portfolio_all[$i]['id'] : "";
-            ?>
-                <div class="file-upload">
-                    <?php if ($existingFile && file_exists($existingFile)) { ?>
-                        <div class="flex">
-                            <a style="color:blue;" href="<?= $existingFile ?>" target="_blank"><?= $fileName ?></a>
-                            <input type="hidden" name="existing_file_<?= $i ?>" value="<?= $existingFile ?>">
-                            <button type="button" class="remove-file ml-2" onclick="remove_file(<?= $file_id ?>);" data-index="<?= $i ?>">❌ 삭제</button>
-                        </div>
-                    <?php } else {
-                    ?>
-                        <input type="file" class="files" name="file_<?= $i ?>">
-                    <?
-                    } ?>
-                </div>
-            <?php
-            }
-            ?>
+            <div class="file-upload">
+                <?php
+                foreach ($portfolio_all as $portfolio) {
+                    $existingFile = isset($portfolio['image_url']) ? $portfolio['image_url'] : null;
+                    $fileName = isset($portfolio['image_name']) ? $portfolio['image_name'] : "No file";
+                    $file_id = isset($portfolio['id']) ? $portfolio['id'] : "";
+                ?>
+                    <div class="flex">
+                        <a style="color:blue;" href="<?= $existingFile ?>" target="_blank"><?= $fileName ?></a>
+                        <input type="hidden" value="<?= $existingFile ?>">
+                        <button type="button" class="remove-file ml-2" onclick="remove_file(<?= $file_id ?>);" data-index="<?= $i ?>">❌ 삭제</button>
+                    </div>
+                <?php
+                }
+                ?>
+                <input type="file" class="files mt-2" name="file_1">
+            </div>
 
             <!-- Submit Button -->
             <div class="flex justify-center w-full">

@@ -1,6 +1,19 @@
 <?
+
+require_once('../db/index.php');
+
+db_connect();
+
+$site_info = select('SELECT * FROM siri.site_info');
+$site_info_row = !empty($site_info[0]) ? $site_info[0] : [];
+
+$portfolio_all = select('SELECT * FROM siri.portfolio');
+$article_all = select('SELECT * FROM siri.article');
+
 date_default_timezone_set('Asia/Seoul');
 $now_date = date('l d F H:i');
+
+
 ?>
 
 
@@ -10,7 +23,19 @@ $now_date = date('l d F H:i');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><?= !empty($site_info_row['site_name']) ? $site_info_row['site_name'] : '' ?></title>
+
+    <!-- 사이트 정보 메타태그 -->
+    <meta name="description" content="<?= !empty($site_info_row['description']) ? $site_info_row['description'] : '' ?>">
+    <meta name="keyword" content="<?= !empty($site_info_row['keyword']) ? $site_info_row['keyword'] : '' ?>">
+
+    <!-- 도메인 (일반적인 meta 태그는 아니지만 참고용) -->
+    <meta property="og:url" content="<?= !empty($site_info_row['domain']) ? $site_info_row['domain'] : '' ?>">
+
+    <!-- Open Graph (SNS 공유 시 사용) -->
+    <meta property="og:title" content="<?= !empty($site_info_row['site_name']) ? $site_info_row['site_name'] : '' ?>">
+    <meta property="og:description" content="<?= !empty($site_info_row['description']) ? $site_info_row['description'] : '' ?>">
+
 
     <link rel="icon" type="image/x-icon" href="/images/favicon_rounded.ico">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -22,22 +47,10 @@ $now_date = date('l d F H:i');
 
 
 <body>
-    <!-- 로딩 화면 -->
-    <!-- <div id="loading-screen">
-        <h1>Hello.</h1>
-        <div class="progress-container">
-            <div id="progress-bar"></div>
-        </div>
-    </div> -->
 
     <div id="body">
 
         <div class="w-full h-full flex justify-center md:items-center min-h-screen content-wrap" data-aos="zoom-in" data-aos-duration="800">
-
-            <!-- 흐림 효과를 위한 컨테이너 -->
-            <!-- <div class="blur-wrapper">
-                <div class="blur-overlay"></div>
-            </div> -->
 
             <main class="md:mb-100px relative w-full max-h-[815px] max-w-screen-xl">
                 <section class="w-full h-full flex md:flex-row flex-col">
@@ -209,19 +222,27 @@ $now_date = date('l d F H:i');
                                 speed="800"
                                 easing-function="ease-in-out"
                                 space-between="30" mousewheel="true">
-
-                                <swiper-slide>
-                                    <img class="rounded-2xl" src="https://cdn.prod.website-files.com/61ba0d8d68d959d09b491aa4/63244ebd9ebeb009874184e0_big__cos.png" alt="포트폴리오 이미지">
-                                </swiper-slide>
-                                <swiper-slide>
-                                    <img class="rounded-2xl" src="https://cdn.prod.website-files.com/61ba0d8d68d959d09b491aa4/6585bbe4efa424b287aeba08_big__heypongo.webp" alt="포트폴리오 이미지">
-                                </swiper-slide>
-                                <swiper-slide>
-                                    <img class="rounded-2xl" src="https://cdn.prod.website-files.com/61ba0d8d68d959d09b491aa4/63247caccde6a700504c3348_big__walex.jpg" alt="포트폴리오 이미지">
-                                </swiper-slide>
-                                <swiper-slide>
-                                    <img class="rounded-2xl" src="https://cdn.prod.website-files.com/61ba0d8d68d959d09b491aa4/63247cacbf2fc841c2cc45bc_big__aim.jpg" alt="포트폴리오 이미지">
-                                </swiper-slide>
+                                <?
+                                if (!empty($portfolio_all)) {
+                                ?>
+                                    <?
+                                    foreach ($portfolio_all as $portfolio) {
+                                    ?>
+                                        <swiper-slide>
+                                            <img class="rounded-2xl" src="<?= $portfolio['image_url'] ?>" alt="포트폴리오 이미지">
+                                        </swiper-slide>
+                                    <?
+                                    }
+                                    ?>
+                                <?
+                                } else {
+                                ?>
+                                    <swiper-slide>
+                                        <h3>Images..</h3>
+                                    </swiper-slide>
+                                <?
+                                }
+                                ?>
                             </swiper-container>
                         </div>
 
@@ -229,9 +250,9 @@ $now_date = date('l d F H:i');
 
                             <div class="flex overflow-auto overflow-y-hidden">
                                 <?
-                                for ($i = 0; $i < 8; $i++) {
+                                foreach ($article_all as $article) {
                                 ?>
-                                    <img class="mr-6 w-[45px] cursor-pointer" onclick="show_file();" src="../images/file.png" alt="file">
+                                    <img class="mr-6 w-[45px] cursor-pointer" onclick="show_file('<?= $article['id'] ?>');" src="../images/file.png" alt="file">
                                 <?
                                 }
                                 ?>
