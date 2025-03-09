@@ -22,7 +22,19 @@ function show_file(event) {
   sound_play(1);
 
   $modal.show();
-  $modal.addClass("w-full h-full");
+
+  if (window.innerWidth <= 768) {
+    // 현재 스크롤 위치 가져오기
+    let scrollY = document.getElementById("body").scrollTop;
+
+    console.log(scrollY);
+
+    $modal.addClass(`w-full h-screen`);
+    $modal.css("top", `${scrollY}px`); // JavaScript로 top 설정
+  } else {
+    $modal.addClass("w-full h-full");
+  }
+
   setTimeout(() => {
     $modal.addClass("show");
   }, 10);
@@ -39,10 +51,16 @@ function show_contract() {
 function close_file(class_name) {
   sound_play(2);
 
-  $modal.removeClass("show");
   setTimeout(() => {
     $modal.hide(); // 애니메이션 후 숨김 처리
   }, 500);
+
+  $modal.removeClass("show");
+  $modal.removeClass("h-screen");
+  $modal.removeClass("h-full");
+  $modal.css({
+    top: "", // top 속성 제거
+  });
 }
 
 function close_file2() {

@@ -33,6 +33,7 @@ var HEIGHT,
 dist = 0;
 
 //INIT THREE JS, SCREEN AND MOUSE EVENTS
+container = document.getElementById("world");
 
 function init() {
   scene = new THREE.Scene();
@@ -55,17 +56,12 @@ function init() {
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(WIDTH, HEIGHT);
   renderer.shadowMapEnabled = true;
-  container = document.getElementById("world");
   container.appendChild(renderer.domElement);
   windowHalfX = WIDTH / 2;
   windowHalfY = HEIGHT / 2;
+
   window.addEventListener("resize", onWindowResize, false);
-  document.addEventListener("mousemove", handleMouseMove, false);
-  document.addEventListener("mousedown", handleMouseDown, false);
-  document.addEventListener("mouseup", handleMouseUp, false);
-  document.addEventListener("touchstart", handleTouchStart, false);
-  document.addEventListener("touchend", handleTouchEnd, false);
-  document.addEventListener("touchmove", handleTouchMove, false);
+  container.addEventListener("mousemove", handleMouseMove, false);
   /*
   controls = new THREE.OrbitControls( camera, renderer.domElement);
   //*/
@@ -82,7 +78,10 @@ function onWindowResize() {
 }
 
 function handleMouseMove(event) {
-  mousePos = { x: event.clientX, y: event.clientY };
+  console.log(event.clientX);
+  console.log(event.clientY);
+
+  mousePos = { x: event.clientX * 1.5, y: event.clientY * 1.5 };
 }
 
 function handleMouseDown(event) {
