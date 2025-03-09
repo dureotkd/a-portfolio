@@ -1,7 +1,6 @@
 <?
 date_default_timezone_set('Asia/Seoul');
 $now_date = date('l d F H:i');
-
 ?>
 
 
@@ -13,6 +12,7 @@ $now_date = date('l d F H:i');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
+    <link rel="icon" type="image/x-icon" href="/images/favicon_rounded.ico">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
