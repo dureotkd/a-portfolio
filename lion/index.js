@@ -81,7 +81,7 @@ function handleMouseMove(event) {
   console.log(event.clientX);
   console.log(event.clientY);
 
-  mousePos = { x: event.clientX * 1.5, y: event.clientY * 1.5 };
+  mousePos = { x: event.clientX * 1.4, y: event.clientY * 1.4 };
 }
 
 function handleMouseDown(event) {
