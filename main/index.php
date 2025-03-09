@@ -40,7 +40,7 @@ $now_date = date('l d F H:i');
             </div> -->
 
             <main class="md:mb-100px relative w-full max-h-[815px] max-w-screen-xl">
-                <section class="w-full h-full flex md:flex-row flex-col mt-2">
+                <section class="w-full h-full flex md:flex-row flex-col">
                     <div class="md:w-2/5 md:min-w-[512px] w-full md:h-auto md:min-h-0 relative" data-label="game">
 
                         <div class="w-full h-full bg-[#2a4bb3] rounded-2xl p-4 text-white shadow-lg">
@@ -138,7 +138,7 @@ $now_date = date('l d F H:i');
                                         <label class="flex items-center bg-[#1E2A47] p-2 rounded-lg cursor-pointer hover:bg-[#243A63]">
 
                                             <div class="toggle-wrapper mr-2">
-                                                <input class="toggle-checkbox" type="checkbox" onchange="lion_exec3()" disabled>
+                                                <input class="toggle-checkbox" type="checkbox" onchange="lion_exec3(event)" disabled>
                                                 <div class="toggle-container">
                                                     <div class="toggle-button">
                                                         <div class="toggle-button-circles-container">
@@ -176,6 +176,9 @@ $now_date = date('l d F H:i');
                                 <div class="ml-3" onclick="show_contract();">
                                     <img class="rounded-2xl" src="../images/message.png" alt="message" style="width:67px;">
                                 </div>
+                                <!-- <div class="ml-3 bg-white">
+                                    <img class="rounded-2xl" src="../images/logo.jpg" alt="logo" style="width:67px;">
+                                </div> -->
                                 <div>
                                     <img src="../images/instagram.png" alt="instagram" style="width:90px;">
                                 </div>
@@ -185,37 +188,80 @@ $now_date = date('l d F H:i');
 
 
                     </div>
-                    <div class="md:w-3/5 w-full h-full bg-[#25252f] ml-2" data-label="portfolio">
+                    <div class="md:ml-4 md:mt-0 mt-4 flex flex-col w-full h-full bg-[#25252f] p-4 rounded-2xl">
 
-                        <swiper-container class="mySwiper rounded-2xl" pagination="true" pagination-clickable="true" direction="vertical" loop="true"
-                            speed="800"
-                            easing-function="ease-in-out"
-                            space-between="30" mousewheel="true">
+                        <header class="flex justify-between items-center">
+                            <div class="flex items-center">
+                                <img class="w-[48px] mr-2 rounded-xl" src="../images/image.png" alt="">
+                                <span class="text-sm font-semibold">portfolio</span>
+                            </div>
+                            <div class="window-controls">
+                                <div class="window-minimize"></div>
+                                <div class="window-maximize"></div>
+                                <div class="window-close" onclick="close_file2();"></div>
+                            </div>
+                        </header>
 
-                            <swiper-slide>
-                                <img class="rounded-2xl" src="https://cdn.prod.website-files.com/61ba0d8d68d959d09b491aa4/63244ebd9ebeb009874184e0_big__cos.png" alt="포트폴리오 이미지">
-                            </swiper-slide>
-                            <swiper-slide>
-                                <img class="rounded-2xl" src="https://cdn.prod.website-files.com/61ba0d8d68d959d09b491aa4/6585bbe4efa424b287aeba08_big__heypongo.webp" alt="포트폴리오 이미지">
-                            </swiper-slide>
-                            <swiper-slide>
-                                <img class="rounded-2xl" src="https://cdn.prod.website-files.com/61ba0d8d68d959d09b491aa4/63247caccde6a700504c3348_big__walex.jpg" alt="포트폴리오 이미지">
-                            </swiper-slide>
-                            <swiper-slide>
-                                <img class="rounded-2xl" src="https://cdn.prod.website-files.com/61ba0d8d68d959d09b491aa4/63247cacbf2fc841c2cc45bc_big__aim.jpg" alt="포트폴리오 이미지">
-                            </swiper-slide>
-                        </swiper-container>
+                        <div class="device__line" style="background-color: #3b3b3b !important;"></div>
+
+                        <div class="md:h-4/5 w-full h-[350px]" data-label="portfolio">
+                            <swiper-container class="mySwiper rounded-2xl" pagination="true" pagination-clickable="true" direction="vertical" loop="true"
+                                speed="800"
+                                easing-function="ease-in-out"
+                                space-between="30" mousewheel="true">
+
+                                <swiper-slide>
+                                    <img class="rounded-2xl" src="https://cdn.prod.website-files.com/61ba0d8d68d959d09b491aa4/63244ebd9ebeb009874184e0_big__cos.png" alt="포트폴리오 이미지">
+                                </swiper-slide>
+                                <swiper-slide>
+                                    <img class="rounded-2xl" src="https://cdn.prod.website-files.com/61ba0d8d68d959d09b491aa4/6585bbe4efa424b287aeba08_big__heypongo.webp" alt="포트폴리오 이미지">
+                                </swiper-slide>
+                                <swiper-slide>
+                                    <img class="rounded-2xl" src="https://cdn.prod.website-files.com/61ba0d8d68d959d09b491aa4/63247caccde6a700504c3348_big__walex.jpg" alt="포트폴리오 이미지">
+                                </swiper-slide>
+                                <swiper-slide>
+                                    <img class="rounded-2xl" src="https://cdn.prod.website-files.com/61ba0d8d68d959d09b491aa4/63247cacbf2fc841c2cc45bc_big__aim.jpg" alt="포트폴리오 이미지">
+                                </swiper-slide>
+                            </swiper-container>
+                        </div>
+
+                        <div class="flex items-center justify-between p-4 rounded-2xl mt-5" style="background-color: #1c1c25;">
+
+                            <div class="flex overflow-auto overflow-y-hidden">
+                                <?
+                                for ($i = 0; $i < 8; $i++) {
+                                ?>
+                                    <img class="mr-6 w-[45px] cursor-pointer" onclick="show_file();" src="../images/file.png" alt="file">
+                                <?
+                                }
+                                ?>
+                            </div>
+                            <img src="https://cdn.prod.website-files.com/61ba0d8d68d959d09b491aa4/632c8d7ea1166b01587787ce_card-dots.png" alt="" class="card-dots__img">
+                        </div>
 
                     </div>
+
                 </section>
 
+
+                <div class="floating-window">
+                    <div class="window-header">
+                        <div class="window-title">TITLE</div>
+                        <div class="window-controls">
+                            <div class="window-minimize"></div>
+                            <div class="window-maximize"></div>
+                            <div class="window-close" onclick="close_file();"></div>
+                        </div>
+                    </div>
+                    <div class="window-content">
+                        <p>안녕하세요. HELLO WORLD..!!</p>
+                    </div>
+                </div>
 
             </main>
 
 
         </div>
-
-
 
     </div>
 

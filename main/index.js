@@ -8,7 +8,7 @@ window.onload = function () {
   const swiperEl = document.querySelector(".mySwiper").swiper;
 
   // 마우스 휠 이벤트 감지
-  swiperEl.on("slideChange", function () {
+  swiperEl.on("slideChangeTransitionStart", function () {
     console.log("🔄 Slide Changed: ", swiperEl.activeIndex);
 
     sound_play_toggle();
@@ -19,6 +19,8 @@ const $modal = $(".floating-window");
 const $contract_modal = $(".floating-contract-window");
 
 function show_file(event) {
+  sound_play(1);
+
   $modal.show();
   $modal.addClass("w-full h-full");
   setTimeout(() => {
@@ -35,6 +37,8 @@ function show_contract() {
 }
 
 function close_file(class_name) {
+  sound_play(2);
+
   $modal.removeClass("show");
   setTimeout(() => {
     $modal.hide(); // 애니메이션 후 숨김 처리
@@ -58,9 +62,8 @@ function show_lion(event) {
 }
 
 function lion_exec1(event) {
-  sound_play_toggle();
-
   const is_chk = $(event.target).is(":checked");
+  sound_play(is_chk ? 1 : 2);
 
   // 체크 여부에 따라 노트북 보이기/숨기기
   laptop.threegroup.visible = is_chk;
@@ -75,11 +78,10 @@ function lion_exec1(event) {
 }
 
 function lion_exec2(event) {
-  sound_play_toggle();
+  const is_chk = $(event.currentTarget).is(":checked");
+  sound_play(is_chk ? 1 : 2);
 
   const world = $("#world");
-
-  const is_chk = $(event.currentTarget).is(":checked");
 
   if (is_chk) {
     world.addClass("dark");
@@ -88,13 +90,16 @@ function lion_exec2(event) {
   }
 }
 
-function lion_exec3() {
-  sound_play_toggle();
+function lion_exec3(event) {
+  const is_chk = $(event.currentTarget).is(":checked");
+  sound_play(is_chk ? 1 : 2);
+
   lion.toggleHeadphones();
 }
 
-function sound_play() {
-  const number = get_number();
+function sound_play(n) {
+  const number = n ? n : get_number();
+
   const soundAudio = new Audio(`../sounds/click${number}.wav`);
 
   if (!soundAudio.paused) {
@@ -105,11 +110,11 @@ function sound_play() {
   soundAudio.play();
 }
 
-const soundAudio = new Audio(`../sounds/toggle.wav`);
-
 function sound_play_toggle() {
-  soundAudio.currentTime = 0; // 처음부터 다시 재생
-  soundAudio.play();
+  const toggle = new Audio(`../sounds/toggle.wav`);
+
+  toggle.currentTime = 0; // 처음부터 다시 재생
+  toggle.play();
 }
 
 function get_number() {
