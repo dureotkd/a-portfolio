@@ -13,8 +13,8 @@ $site_info = select('SELECT * FROM siri.site_info');
 $site_info_row = !empty($site_info[0]) ? $site_info[0] : [];
 
 $portfolio_all = select('SELECT * FROM siri.portfolio');
-
 $article_all = select('SELECT * FROM siri.article');
+$app_all = select('SELECT * FROM siri.app');
 
 ?>
 <!DOCTYPE html>
@@ -110,6 +110,31 @@ $article_all = select('SELECT * FROM siri.article');
             <!-- Submit Button -->
             <div class="flex justify-center w-full">
                 <button type="button" onclick="save_portfolio();" class="px-6 py-2 w-full bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition">
+                    Save <span class="ml-2">📨</span>
+                </button>
+            </div>
+
+            <h2 class="text-lg font-bold mb-2">
+                Link<span class="ml-2">👀</span>
+            </h2>
+
+            <div class="flex flex-col">
+                <?
+                foreach ($app_all as $app_row) {
+                ?>
+                    <div class="w-full mt-2">
+                        <label class="block text-gray-700"><?= $app_row['name'] ?></label>
+                        <input type="text" name="link[<?= $app_row['id'] ?>]" value="<?= !empty($app_row['link']) ? $app_row['link'] : '' ?>" placeholder="Link" class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none">
+                    </div>
+                <?
+                }
+                ?>
+            </div>
+
+
+            <!-- Submit Button -->
+            <div class="flex justify-center w-full">
+                <button type="button" onclick="save_link();" class="px-6 py-2 w-full bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition">
                     Save <span class="ml-2">📨</span>
                 </button>
             </div>
@@ -264,6 +289,22 @@ $article_all = select('SELECT * FROM siri.article');
                 },
                 success: function(response) {
                     window.location.reload();
+                }
+            })
+
+        }
+
+        function save_link() {
+
+            $("input[name=mode]").val('link');
+            const serial = $("#sform").serialize();
+
+            $.ajax({
+                type: "POST",
+                url: "/_ajax/index.php",
+                data: serial,
+                success: function(response) {
+                    alert('저장되었습니다')
                 }
             })
 

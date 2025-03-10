@@ -191,4 +191,19 @@ switch ($mode) {
         delete("DELETE FROM article WHERE id = '{$id}'");
 
         break;
+
+    case 'link':
+
+        $link = $_REQUEST['link'] ?? '';
+
+        foreach ($link as $id => $row) {
+
+            update('app', [
+                "link"  => $row,
+            ], [
+                "id"    => $id
+            ]);
+        }
+
+        break;
 }

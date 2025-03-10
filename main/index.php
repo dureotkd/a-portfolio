@@ -9,6 +9,7 @@ $site_info_row = !empty($site_info[0]) ? $site_info[0] : [];
 
 $portfolio_all = select('SELECT * FROM siri.portfolio');
 $article_all = select('SELECT * FROM siri.article');
+$app_all = select('SELECT * FROM siri.app');
 
 date_default_timezone_set('Asia/Seoul');
 $now_date = date('l d F H:i');
@@ -180,21 +181,53 @@ $now_date = date('l d F H:i');
                             </div>
 
                             <div class="md:mt-3 mt-5 flex flex-row  items-center w-full justify-center icon-wrap">
-                                <div class="p-1 rounded-2xl" style="background-color: #0288d1;">
-                                    <img src="../images/linkdin.png" alt="linkdin" style="width:59px;">
-                                </div>
-                                <div class="ml-3 bg-white rounded-2xl">
-                                    <img src="../images/sc.png" alt="sc" style="width:67px;">
-                                </div>
-                                <div class="ml-3" onclick="show_contract();">
-                                    <img class="rounded-2xl" src="../images/message.png" alt="message" style="width:67px;">
-                                </div>
-                                <!-- <div class="ml-3 bg-white">
-                                    <img class="rounded-2xl" src="../images/logo.jpg" alt="logo" style="width:67px;">
-                                </div> -->
-                                <div>
-                                    <img src="../images/instagram.png" alt="instagram" style="width:90px;">
-                                </div>
+                                <?
+                                foreach ($app_all as $app_row) {
+                                ?>
+
+                                    <?
+                                    if ($app_row['name'] == 'Linkdin') {
+                                    ?>
+                                        <a class="p-1 rounded-2xl" href="<?= $app_row['link'] ?>" target="_blank" style="background-color: #0288d1;">
+                                            <img src="../images/linkdin.png" alt="linkdin" style="width:59px;">
+                                        </a>
+                                    <?
+                                    }
+                                    ?>
+
+                                    <?
+                                    if ($app_row['name'] == 'Soundcloud') {
+                                    ?>
+                                        <a class="ml-3 bg-white rounded-2xl" href="<?= $app_row['link'] ?>" target="_blank">
+                                            <img src="../images/sc.png" alt="sc" style="width:67px;">
+                                        </a>
+                                    <?
+                                    }
+                                    ?>
+
+                                    <?
+                                    if ($app_row['name'] == 'Mail') {
+                                    ?>
+                                        <a href="#" class="ml-3" onclick="show_contract();">
+                                            <img class="rounded-2xl" src="../images/message.png" alt="message" style="width:67px;">
+                                        </a>
+                                    <?
+                                    }
+                                    ?>
+
+                                    <?
+                                    if ($app_row['name'] == 'Instagram') {
+                                    ?>
+                                        <a href="<?= $app_row['link'] ?>" target="_blank">
+                                            <img src="../images/instagram.png" alt="instagram" style="width:90px;">
+                                        </a>
+                                    <?
+                                    }
+                                    ?>
+
+                                <?
+                                }
+                                ?>
                             </div>
 
                         </div>
