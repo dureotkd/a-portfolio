@@ -144,6 +144,8 @@ switch ($mode) {
 
         delete("DELETE FROM portfolio WHERE id = '{$file_id}'");
 
+        echo json_encode(true);
+
         break;
 
     case 'article':
@@ -171,6 +173,8 @@ switch ($mode) {
             ]);
         }
 
+        echo json_encode(true);
+
         break;
 
     case 'article_update_view':
@@ -190,6 +194,8 @@ switch ($mode) {
 
         delete("DELETE FROM article WHERE id = '{$id}'");
 
+        echo json_encode(true);
+
         break;
 
     case 'link':
@@ -204,6 +210,22 @@ switch ($mode) {
                 "id"    => $id
             ]);
         }
+
+        echo json_encode(true);
+
+        break;
+
+    case 'send_email':
+
+        $email = $_REQUEST['email'] ?? '';
+        $message = $_REQUEST['message'] ?? '';
+
+        insert('mail', [
+            'from'        => $email,
+            'message'   => $message,
+        ]);
+
+        echo json_encode(true);
 
         break;
 }

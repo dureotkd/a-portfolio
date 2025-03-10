@@ -31,8 +31,8 @@ function show_file(id) {
     },
     dataType: "json",
     success: function ({ content, title }) {
-      $(".window-title").text(title);
-      $(".window-content").html(content);
+      $(".floating-window .window-title").text(title);
+      $(".floating-window .window-content").html(content);
 
       $modal.show();
 
@@ -57,7 +57,9 @@ function show_file(id) {
 
 function show_contract() {
   $contract_modal.show();
-  $contract_modal.addClass("w-2/5 min-h-2/5 h-auto");
+  $contract_modal.addClass("md:w-3/5 w-full min-h-2/5 h-auto");
+  $("#email").focus();
+
   setTimeout(() => {
     $contract_modal.addClass("center");
   }, 10);
@@ -152,4 +154,31 @@ function sound_play_toggle() {
 
 function get_number() {
   return Math.floor(Math.random() * 2) + 1;
+}
+
+function send_email(event) {
+  event.preventDefault();
+
+  const email = $("input[name=email]").val();
+  const message = $("textarea[name=message]").val();
+
+  $.ajax({
+    type: "POST",
+    url: "/_ajax/index.php",
+    async: false,
+    data: {
+      email: email,
+      message: message,
+      mode: "send_email",
+    },
+    dataType: "json",
+    success: function (r) {
+      Swal.fire({
+        title: "Thank You !",
+        text: "Email has been sent",
+      });
+
+      close_file2();
+    },
+  });
 }

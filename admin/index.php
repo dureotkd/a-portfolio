@@ -16,6 +16,8 @@ $portfolio_all = select('SELECT * FROM siri.portfolio');
 $article_all = select('SELECT * FROM siri.article');
 $app_all = select('SELECT * FROM siri.app');
 
+$mail_all = select('SELECT * FROM siri.mail ORDER BY id DESC');
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,9 +25,9 @@ $app_all = select('SELECT * FROM siri.app');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
 
-    <title>Admin</title>
+    <title><?= !empty($site_info_row['site_name']) ? $site_info_row['site_name'] : '' ?></title>
+
     <link rel="icon" type="image/x-icon" href="/images/favicon_rounded.ico">
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
@@ -178,6 +180,27 @@ $app_all = select('SELECT * FROM siri.app');
                 <button type="button" onclick="save_article();" class="px-6 py-2 w-full bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition">
                     Save <span class="ml-2">📨</span>
                 </button>
+            </div>
+
+            <h2 class="text-lg font-bold mb-2">
+                Email<span class="ml-2">💌</span>
+            </h2>
+
+            <div class="flex flex-col">
+                <?
+                if (!empty($mail_all)) {
+                    foreach ($mail_all as $mail_row) {
+                ?>
+                        <div class="flex flex-col pb-2 mb-4" style="border-bottom:1px solid black;">
+                            <h4>FROM : <?= $mail_row['from'] ?></h4>
+                            <p class="mt-2 leading-12">Message : <?= $mail_row['message'] ?></p>
+                        </div>
+                    <?
+                    }
+                    ?>
+                <?
+                }
+                ?>
             </div>
 
         </form>

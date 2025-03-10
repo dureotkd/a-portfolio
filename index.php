@@ -1,10 +1,31 @@
+<?php
+require_once('./db/index.php');
+
+db_connect();
+
+$site_info = select('SELECT * FROM siri.site_info');
+$site_info_row = !empty($site_info[0]) ? $site_info[0] : [];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><?= !empty($site_info_row['site_name']) ? $site_info_row['site_name'] : '' ?></title>
+
+    <!-- 사이트 정보 메타태그 -->
+    <meta name="description" content="<?= !empty($site_info_row['description']) ? $site_info_row['description'] : '' ?>">
+    <meta name="keyword" content="<?= !empty($site_info_row['keyword']) ? $site_info_row['keyword'] : '' ?>">
+
+    <!-- 도메인 (일반적인 meta 태그는 아니지만 참고용) -->
+    <meta property="og:url" content="<?= !empty($site_info_row['domain']) ? $site_info_row['domain'] : '' ?>">
+
+    <!-- Open Graph (SNS 공유 시 사용) -->
+    <meta property="og:title" content="<?= !empty($site_info_row['site_name']) ? $site_info_row['site_name'] : '' ?>">
+    <meta property="og:description" content="<?= !empty($site_info_row['description']) ? $site_info_row['description'] : '' ?>">
+
 
     <link rel="icon" type="image/x-icon" href="/images/favicon_rounded.ico">
     <link rel="stylesheet" href="./index.css">

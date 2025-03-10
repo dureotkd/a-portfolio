@@ -37,8 +37,8 @@ $now_date = date('l d F H:i');
     <meta property="og:title" content="<?= !empty($site_info_row['site_name']) ? $site_info_row['site_name'] : '' ?>">
     <meta property="og:description" content="<?= !empty($site_info_row['description']) ? $site_info_row['description'] : '' ?>">
 
-
     <link rel="icon" type="image/x-icon" href="/images/favicon_rounded.ico">
+
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -297,6 +297,33 @@ $now_date = date('l d F H:i');
 
                 </section>
 
+                <div class="floating-contract-window">
+                    <div class="window-header">
+                        <div class="window-title">CONTRACT US</div>
+                        <div class="window-controls">
+                            <div class="window-minimize"></div>
+                            <div class="window-maximize"></div>
+                            <div class="window-close" onclick="close_file2();"></div>
+                        </div>
+                    </div>
+                    <div class="window-content">
+                        <div class="flex items-center">
+                            <img src="../images/email.png" style="width: 50px;" alt="email">
+                            <h2 class="text-2xl font-semibold mt-2 ml-2" style="color:#100f0f;">
+                                <?= !empty($site_info_row['email']) ? $site_info_row['email'] : '' ?>
+                            </h2>
+                        </div>
+
+                        <form method="post" id="email_form" onsubmit="send_email(event);">
+                            <div class="flex flex-col w-full mt-4">
+                                <input class="p-2" maxlength="256" name="email" data-name="email" placeholder="your@email.com" type="email" id="email" required="">
+                                <textarea class="mt-1 p-2" rows="20" name="message" maxlength="5000" data-name="message" placeholder="Your message" required=""></textarea>
+                                <input type="submit" class="mt-1 pt-2 pb-2 cursor-pointer" data-wait="Please wait..." value="Submit">
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
 
                 <div class="floating-window">
                     <div class="window-header">
@@ -325,12 +352,15 @@ $now_date = date('l d F H:i');
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js' integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==' crossorigin='anonymous'></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r70/three.min.js"></script>
 <script src="../lion/index.js"></script>
 <script src="./index.js"></script>
+
 
 </main>
 
