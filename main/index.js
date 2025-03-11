@@ -59,7 +59,16 @@ function show_contract() {
   sound_play(1);
 
   $contract_modal.show();
-  $contract_modal.addClass("md:w-3/5 w-full min-h-2/5 h-auto");
+
+  if (window.innerWidth <= 768) {
+    // 현재 스크롤 위치 가져오기
+    let scrollY = document.getElementById("body").scrollTop;
+
+    $contract_modal.addClass("md:w-3/5 w-full min-h-2/5 h-auto");
+    // $contract_modal.css("top", `${scrollY}px`); // JavaScript로 top 설정
+  } else {
+    $contract_modal.addClass("md:w-3/5 w-full min-h-2/5 h-auto");
+  }
   $("#email").focus();
 
   setTimeout(() => {

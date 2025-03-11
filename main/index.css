@@ -184,6 +184,12 @@ h5 {
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
+.floating-contract-window {
+  position: fixed !important;
+  top: 50% !important;
+  max-width: 760px;
+}
+
 .floating-window.show {
   transform: scale(1);
   opacity: 1;
