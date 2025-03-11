@@ -188,9 +188,10 @@ $now_date = date('l d F H:i');
                                     <?
                                     if ($app_row['name'] == 'Linkdin') {
                                     ?>
-                                        <a class="p-1 rounded-2xl" href="<?= $app_row['link'] ?>" target="_blank" style="background-color: #0288d1;">
+                                        <button class="p-1 rounded-2xl" onclick="go_app('<?= $app_row['name'] ?>');" style="background-color: #0288d1;">
                                             <img src="../images/linkdin.png" alt="linkdin" style="width:59px;">
-                                        </a>
+                                        </button>
+                                        <a id="<?= $app_row['name'] ?>-link" href=<?= $app_row['link'] ?> target="_blank"></a>
                                     <?
                                     }
                                     ?>
@@ -198,9 +199,10 @@ $now_date = date('l d F H:i');
                                     <?
                                     if ($app_row['name'] == 'Soundcloud') {
                                     ?>
-                                        <a class="ml-3 bg-white rounded-2xl" href="<?= $app_row['link'] ?>" target="_blank">
+                                        <button class=" ml-3 bg-white rounded-2xl" onclick="go_app('<?= $app_row['name'] ?>');">
                                             <img src="../images/sc.png" alt="sc" style="width:67px;">
-                                        </a>
+                                        </button>
+                                        <a id="<?= $app_row['name'] ?>-link" href=<?= $app_row['link'] ?> target="_blank"></a>
                                     <?
                                     }
                                     ?>
@@ -208,7 +210,7 @@ $now_date = date('l d F H:i');
                                     <?
                                     if ($app_row['name'] == 'Mail') {
                                     ?>
-                                        <a href="#" class="ml-3" onclick="show_contract();">
+                                        <a href=" #" class="ml-3" onclick="show_contract();">
                                             <img class="rounded-2xl" src="../images/message.png" alt="message" style="width:67px;">
                                         </a>
                                     <?
@@ -218,9 +220,10 @@ $now_date = date('l d F H:i');
                                     <?
                                     if ($app_row['name'] == 'Instagram') {
                                     ?>
-                                        <a href="<?= $app_row['link'] ?>" target="_blank">
+                                        <button onclick="go_app('<?= $app_row['name'] ?>');">
                                             <img src="../images/instagram.png" alt="instagram" style="width:90px;">
-                                        </a>
+                                        </button>
+                                        <a id="<?= $app_row['name'] ?>-link" href=<?= $app_row['link'] ?> target="_blank"></a>
                                     <?
                                     }
                                     ?>

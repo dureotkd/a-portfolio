@@ -56,6 +56,8 @@ function show_file(id) {
 }
 
 function show_contract() {
+  sound_play(1);
+
   $contract_modal.show();
   $contract_modal.addClass("md:w-3/5 w-full min-h-2/5 h-auto");
   $("#email").focus();
@@ -81,10 +83,14 @@ function close_file(class_name) {
 }
 
 function close_file2() {
+  sound_play(2);
+
   $contract_modal.hide(); // 애니메이션 후 숨김 처리
 }
 
 function show_lion(event) {
+  sound_play(1);
+
   const target = $(event.currentTarget);
   $(".toggle-checkbox").prop("disabled", false);
   target.removeAttr("onclick");
@@ -181,4 +187,16 @@ function send_email(event) {
       close_file2();
     },
   });
+}
+
+function go_app(appName) {
+  sound_play(1);
+
+  console.log($(`#${appName}-link`));
+  let link = $(`#${appName}-link`);
+
+  console.log(`App Name: ${appName}`);
+  console.log(`Link Element:`, link);
+
+  link[0].click(); // 순수 JavaScript 방식으로 클릭 시도
 }

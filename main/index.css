@@ -177,6 +177,7 @@ h5 {
   font-family: "Noto Sans KR", sans-serif !important;
   visibility: visible;
   opacity: 0;
+  display: none;
   transform: scale(0.8);
   font-weight: 400;
   font-size: 14px;
