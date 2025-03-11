@@ -164,8 +164,7 @@ h5 {
   box-shadow: rgba(255, 255, 255, 0.17) 0px 0px 0px 1px inset;
 }
 
-.floating-window,
-.floating-contract-window {
+.floating-window {
   top: 0px;
   text-transform: none !important;
   position: absolute;
@@ -177,7 +176,6 @@ h5 {
   font-family: "Noto Sans KR", sans-serif !important;
   visibility: visible;
   opacity: 0;
-  display: none;
   transform: scale(0.8);
   font-weight: 400;
   font-size: 14px;
@@ -188,6 +186,19 @@ h5 {
   position: fixed !important;
   top: 50% !important;
   max-width: 760px;
+  text-transform: none !important;
+  background-color: #f6f6f6;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  z-index: 9999;
+  font-family: "Noto Sans KR", sans-serif !important;
+  visibility: visible;
+  display: none;
+  transform: scale(0.8);
+  font-weight: 400;
+  font-size: 14px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .floating-window.show {

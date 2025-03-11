@@ -785,13 +785,9 @@ Laptop.prototype.update = function (xTarget, yTarget, deltaTime) {
 
   // 📌 위치 변경을 부드럽게 적용 (급격한 변화 방지)
   this.threegroup.position.x +=
-    (this.tPosX - this.threegroup.position.x) * deltaTime * 2.5; // 부드러운 이동
+    (this.tPosX - this.threegroup.position.x) * deltaTime * 1.1; // 부드러운 이동
   this.threegroup.position.y +=
-    (this.tPosY - this.threegroup.position.y) * deltaTime * 2.5;
-
-  // 💡 **화면이 마우스 방향으로 기울어지는 효과 (반응 속도 줄임)**
-  let rotationY = rule3(xTarget, -200, 200, -0.1, 0.1);
-  let rotationX = rule3(yTarget, -200, 200, -0.05, 0.05);
+    (this.tPosY - this.threegroup.position.y) * deltaTime * 1.1;
 };
 
 Lion.prototype.cool = function (xTarget, yTarget, deltaTime) {

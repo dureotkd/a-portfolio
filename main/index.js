@@ -5,6 +5,12 @@ window.onload = function () {
     once: true, // 한 번만 실행되도록 설정
   });
 
+  init();
+  createLights();
+  createLion();
+  createLaptop();
+  loop();
+
   const swiperEl = document.querySelector(".mySwiper").swiper;
 
   // 마우스 휠 이벤트 감지
@@ -104,11 +110,11 @@ function show_lion(event) {
   $(".toggle-checkbox").prop("disabled", false);
   target.removeAttr("onclick");
 
-  init();
-  createLights();
-  createLion();
-  createLaptop();
-  loop();
+  // init();
+  // createLights();
+  // createLion();
+  // createLaptop();
+  // loop();
 }
 
 function lion_exec1(event) {

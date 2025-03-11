@@ -72,7 +72,7 @@ $now_date = date('l d F H:i');
                             <div class="device__line"></div>
 
                             <!-- Profile Image Container -->
-                            <div id="world" class="h-[350px] bg-[#1E2A47] overflow-hidden rounded-xl mt-4 flex justify-center items-center min-h-[350px] cursor-pointer" style=" background-color: #e4ba89;" onclick="show_lion(event);">
+                            <div id="world" class="h-[350px] bg-[#1E2A47] overflow-hidden rounded-xl mt-4 flex justify-center items-center min-h-[350px] cursor-pointer" style=" background-color: #e4ba89;">
                                 <div class="ml-3 p-1 rounded-2xl">
                                     <img src=" ../images/lion.png" alt="lion">
                                     <div id="instructions">
@@ -97,7 +97,7 @@ $now_date = date('l d F H:i');
                                         <label class="flex items-center bg-[#1E2A47] p-2 rounded-lg cursor-pointer hover:bg-[#243A63]">
 
                                             <div class="toggle-wrapper mr-2">
-                                                <input class="toggle-checkbox" type="checkbox" onchange="lion_exec1(event)" disabled>
+                                                <input class="toggle-checkbox" type="checkbox" onchange="lion_exec1(event)">
                                                 <div class="toggle-container">
                                                     <div class="toggle-button">
                                                         <div class="toggle-button-circles-container">
@@ -124,7 +124,7 @@ $now_date = date('l d F H:i');
                                         <label class="flex items-center bg-[#1E2A47] p-2 rounded-lg cursor-pointer hover:bg-[#243A63]">
 
                                             <div class="toggle-wrapper mr-2">
-                                                <input class="toggle-checkbox" type="checkbox" onchange="lion_exec2(event)" disabled>
+                                                <input class="toggle-checkbox" type="checkbox" onchange="lion_exec2(event)">
                                                 <div class="toggle-container">
                                                     <div class="toggle-button">
                                                         <div class="toggle-button-circles-container">
@@ -152,7 +152,7 @@ $now_date = date('l d F H:i');
                                         <label class="flex items-center bg-[#1E2A47] p-2 rounded-lg cursor-pointer hover:bg-[#243A63]">
 
                                             <div class="toggle-wrapper mr-2">
-                                                <input class="toggle-checkbox" type="checkbox" onchange="lion_exec3(event)" disabled>
+                                                <input class="toggle-checkbox" type="checkbox" onchange="lion_exec3(event)">
                                                 <div class="toggle-container">
                                                     <div class="toggle-button">
                                                         <div class="toggle-button-circles-container">
